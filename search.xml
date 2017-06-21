@@ -26,7 +26,8 @@
     <entry>
       <title><![CDATA[Regex Crossword Volapük Solutions]]></title>
       <url>/2017/06/21/Regex-Crossword-Volapuk-Solutions/</url>
-      <content type="html"><![CDATA[<a id="more"></a>
+      <content type="html"><![CDATA[<p><a href="https://www.regexcrossword.com" target="_blank" rel="external">Play Regex Crossword here</a></p>
+<a id="more"></a>
 <h2 id="Bal"><a href="#Bal" class="headerlink" title="Bal"></a>Bal</h2><p><img src="/images/regex/vola1.JPG" alt=""></p>
 <h2 id="Tel"><a href="#Tel" class="headerlink" title="Tel"></a>Tel</h2><p>Omg that is cheeky.<br><img src="/images/regex/vola1.JPG" alt=""></p>
 <h2 id="Kil"><a href="#Kil" class="headerlink" title="Kil"></a>Kil</h2><p><img src="/images/regex/vola1.JPG" alt=""></p>
@@ -46,8 +47,16 @@
     <entry>
       <title><![CDATA[Regex Crossword Hamlet Solutions]]></title>
       <url>/2017/06/21/Regex-Crossword-Hamlet-Solutions/</url>
-      <content type="html"></content>
+      <content type="html"><![CDATA[<p><a href="https://www.regexcrossword.com" target="_blank" rel="external">Play Regex Crossword here</a></p>
+<a id="more"></a>
+<h2 id="The-Ghost"><a href="#The-Ghost" class="headerlink" title="The Ghost"></a>The Ghost</h2><h2 id="Hamlet-and-Ophelia"><a href="#Hamlet-and-Ophelia" class="headerlink" title="Hamlet and Ophelia"></a>Hamlet and Ophelia</h2><h2 id="The-Play"><a href="#The-Play" class="headerlink" title="The Play"></a>The Play</h2><h2 id="Laertes"><a href="#Laertes" class="headerlink" title="Laertes"></a>Laertes</h2><h2 id="Memento"><a href="#Memento" class="headerlink" title="Memento"></a>Memento</h2><h2 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h2>]]></content>
       
+        <categories>
+            
+            <category> Regex Crossword </category>
+            
+        </categories>
+        
         
     </entry>
     
