@@ -3,6 +3,40 @@
   
     
     <entry>
+      <title><![CDATA[Passport.js Simple Example]]></title>
+      <url>/2017/07/02/Passport-js-Simple-Example/</url>
+      <content type="html"><![CDATA[<p>This is a simple example to demonstrate <a href="http://passportjs.org/" target="_blank" rel="external">Passport.js</a> using a basic local strategy.</p>
+<a id="more"></a>
+<h2 id="Create-new-project"><a href="#Create-new-project" class="headerlink" title="Create new project"></a>Create new project</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">npm i -S express passport passport-http mocha</div><div class="line">touch server.js test.js</div><div class="line">npm init -y</div></pre></td></tr></table></figure>
+<h2 id="Create-Server-boilerplate"><a href="#Create-Server-boilerplate" class="headerlink" title="Create Server boilerplate"></a>Create Server boilerplate</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// server.js</span></div><div class="line"><span class="keyword">const</span> passport = <span class="built_in">require</span>(<span class="string">"passport"</span>);</div><div class="line"><span class="keyword">const</span> BasicStrategy = <span class="built_in">require</span>(<span class="string">"passport-http"</span>).BasicStrategy;</div><div class="line"><span class="keyword">const</span> app = <span class="built_in">require</span>(<span class="string">"express"</span>)();</div><div class="line"></div><div class="line">passport.use(</div><div class="line">  <span class="keyword">new</span> BasicStrategy(<span class="function">(<span class="params">userid, password, done</span>) =&gt;</span> &#123;</div><div class="line">    <span class="comment">// <span class="doctag">TODO:</span> Replace with database check</span></div><div class="line">    <span class="keyword">if</span> (userid !== <span class="string">"foo"</span> || password !== <span class="string">"bar"</span>) &#123;</div><div class="line">      <span class="keyword">return</span> done(<span class="literal">null</span>, <span class="literal">false</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> done(<span class="literal">null</span>, &#123; <span class="attr">username</span>: <span class="string">"Foobar"</span> &#125;);</div><div class="line">  &#125;)</div><div class="line">);</div><div class="line"></div><div class="line">app.get(<span class="string">"/"</span>, passport.authenticate(<span class="string">"basic"</span>, &#123; <span class="attr">session</span>: <span class="literal">false</span> &#125;), (req, res) =&gt; &#123;</div><div class="line">  res.send(req.user);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">app.listen(<span class="number">8080</span>, () =&gt; &#123; <span class="built_in">console</span>.log(<span class="string">"listening"</span>) &#125;);</div></pre></td></tr></table></figure>
+<h2 id="Build-our-test-cases"><a href="#Build-our-test-cases" class="headerlink" title="Build our test cases"></a>Build our test cases</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// test.js</span></div><div class="line"><span class="keyword">const</span> assert = <span class="built_in">require</span>(<span class="string">"assert"</span>);</div><div class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);</div><div class="line"></div><div class="line">describe(<span class="string">"Test"</span>, () =&gt; &#123;</div><div class="line"></div><div class="line">  it(<span class="string">"should reject no username/password"</span>, done =&gt; &#123;</div><div class="line">    http.get(<span class="string">"http://localhost:8080"</span>, res =&gt; &#123;</div><div class="line">      assert.equal(<span class="number">401</span>, res.statusCode);</div><div class="line">      done();</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  it(<span class="string">"should reject incorrect username/password"</span>, done =&gt; &#123;</div><div class="line">    http.get(</div><div class="line">      &#123;</div><div class="line">        <span class="attr">host</span>: <span class="string">"localhost"</span>,</div><div class="line">        <span class="attr">port</span>: <span class="string">"8080"</span>,</div><div class="line">        <span class="attr">auth</span>: <span class="string">"foo:foo"</span></div><div class="line">      &#125;,</div><div class="line">      res =&gt; &#123;</div><div class="line">        assert.equal(<span class="number">401</span>, res.statusCode);</div><div class="line">        done();</div><div class="line">      &#125;</div><div class="line">    );</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  it(<span class="string">"should accept correct username/password"</span>, done =&gt; &#123;</div><div class="line">    http.get(</div><div class="line">      &#123;</div><div class="line">        <span class="attr">host</span>: <span class="string">"localhost"</span>,</div><div class="line">        <span class="attr">port</span>: <span class="string">"8080"</span>,</div><div class="line">        <span class="attr">auth</span>: <span class="string">"foo:bar"</span></div><div class="line">      &#125;,</div><div class="line">      res =&gt; &#123;</div><div class="line">        <span class="keyword">let</span> json = &#123;&#125;;</div><div class="line">        <span class="keyword">let</span> data = <span class="string">""</span>;</div><div class="line">        res.on(<span class="string">"data"</span>, chunk =&gt; &#123; data += chunk &#125;);</div><div class="line">        res.on(<span class="string">"end"</span>, () =&gt; &#123;</div><div class="line">          json = <span class="built_in">JSON</span>.parse(data);</div><div class="line">          assert.equal(<span class="number">200</span>, res.statusCode);</div><div class="line">          assert.equal(<span class="string">"Foobar"</span>, json.username);</div><div class="line">          done();</div><div class="line">        &#125;);</div><div class="line">      &#125;</div><div class="line">    );</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="Start-server"><a href="#Start-server" class="headerlink" title="Start server"></a>Start server</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm start</div></pre></td></tr></table></figure>
+<h2 id="Test-requests"><a href="#Test-requests" class="headerlink" title="Test requests"></a>Test requests</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ npm <span class="built_in">test</span></div><div class="line">Test</div><div class="line">  √ should reject no username/password</div><div class="line">  √ should reject incorrect username/password</div><div class="line">  √ should accept correct username/password</div><div class="line">$ curl localhost:8080</div><div class="line">Unauthorized</div><div class="line">$ curl localhost:8080 --user foo:bar</div><div class="line">&#123;<span class="string">"username"</span>:<span class="string">"Foobar"</span>&#125;</div></pre></td></tr></table></figure>
+<h2 id="Next…"><a href="#Next…" class="headerlink" title="Next…"></a>Next…</h2><p>Go back to the TODO in BasicStrategy and replace with database call.<br>Also don’t forget that you can dump the header with <code>curl -D - localhost:8080 --user foo:bar</code></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Javascript </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> javascript </tag>
+            
+            <tag> password.js </tag>
+            
+            <tag> express </tag>
+            
+            <tag> mocha </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Regex Crossword Hexagonal Solutions]]></title>
       <url>/2017/06/25/Regex-Crossword-Hexagonal-Solutions/</url>
       <content type="html"><![CDATA[<p><a href="https://www.regexcrossword.com" target="_blank" rel="external">Play Regex Crossword here</a></p>
@@ -16,10 +50,16 @@
       
         <categories>
             
-            <category> Regex Crossword </category>
+            <category> Fun and Games </category>
             
         </categories>
         
+        
+        <tags>
+            
+            <tag> regex crossword </tag>
+            
+        </tags>
         
     </entry>
     
@@ -34,153 +74,221 @@
       
         <categories>
             
-            <category> Regex Crossword </category>
+            <category> Fun and Games </category>
             
         </categories>
         
+        
+        <tags>
+            
+            <tag> regex crossword </tag>
+            
+        </tags>
         
     </entry>
     
     <entry>
       <title><![CDATA[How well do you know Node.js?]]></title>
       <url>/2017/06/25/How-well-do-you-know-Node-js/</url>
-      <content type="html"><![CDATA[<p><a href="https://edgecoders.com/how-well-do-you-know-node-js-36b1473c01c8" target="_blank" rel="external">https://edgecoders.com/how-well-do-you-know-node-js-36b1473c01c8</a></p>
-<ol>
-<li>How come when you declare a global variable in any Node.js file it’s not really global to all modules?<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">exports, require, module, __filename, __dirname</span>) </span>&#123;</div><div class="line">  <span class="comment">// module code</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><a href="https://nodejs.org/api/modules.html#modules_the_module_wrapper" target="_blank" rel="external">https://nodejs.org/api/modules.html#modules_the_module_wrapper</a></p>
-<ol>
-<li><p><strong>When exporting the API of a Node module, why can we sometimes use exports and other times we have to use module.exports?</strong><br>exports is initially just an alias for module.exports. So if you write <code>exports.foo = &#39;bar&#39;</code>, it is actually <code>module.exports = { foo: &#39;bar&#39;}</code>. However if you want to export a function or an object, you override the exports alias. So using <code>module.exports = function foo() {}</code> will cause exports and module.exports to no longer reference the same object.</p>
-</li>
-<li><p><strong>Can we require local files without using relative paths?</strong><br>Lots of different ways. This is probably the simplest.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// app.js</span></div><div class="line">global.__base = __dirname + <span class="string">'/'</span>;</div><div class="line"></div><div class="line"><span class="comment">// bar/whatever.js</span></div><div class="line"><span class="keyword">const</span> foo = <span class="built_in">require</span>(__base + <span class="string">'foo/whatever'</span>);</div></pre></td></tr></table></figure>
-<p><a href="https://gist.github.com/branneman/8048520" target="_blank" rel="external">Gist with different options</a></p>
-</li>
-<li><p>What is the Event Loop? Is it part of V8?</p>
-</li>
-<li><p>What is the Call Stack? Is it part of V8?</p>
-</li>
-<li><p><strong>What is the difference between setImmediate and process.nextTick?</strong></p>
-</li>
-</ol>
+      <content type="html"><![CDATA[<p><a href="https://edgecoders.com/how-well-do-you-know-node-js-36b1473c01c8" target="_blank" rel="external">Here is the quiz</a>. The lesson is, read the <a href="https://nodejs.org/en/docs/" target="_blank" rel="external">documentation</a>.</p>
+<a id="more"></a>
+<hr>
+<h3 id="How-come-when-you-declare-a-global-variable-in-any-Node-js-file-it’s-not-really-global-to-all-modules"><a href="#How-come-when-you-declare-a-global-variable-in-any-Node-js-file-it’s-not-really-global-to-all-modules" class="headerlink" title="How come when you declare a global variable in any Node.js file it’s not really global to all modules?"></a>How come when you declare a global variable in any Node.js file it’s not really global to all modules?</h3><p>Node wraps any required code in the below function. The idea is to keep each module in its own sandbox. These is a way to do globals, by <code>global.foo = 5</code>, but it’s not recommended practice.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">exports, require, module, __filename, __dirname</span>) </span>&#123;</div><div class="line">  <span class="comment">// module code</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
 <ul>
-<li><code>setImmediate</code> puts the callback at the end of the event queue.</li>
-<li><code>process.nextTick</code> puts the callback at the beginning of the event queue.<br><a href="https://nodejs.org/api/timers.html#timers_scheduling_timers" target="_blank" rel="external">Node Docs on Times</a></li>
+<li><a href="https://nodejs.org/api/globals.html#globals_global_objects" target="_blank" rel="external">Node Docs on globals</a></li>
+<li><a href="https://nodejs.org/api/modules.html#modules_the_module_wrapper" target="_blank" rel="external">Node Docs on the module wrapper</a></li>
 </ul>
-<ol>
-<li><p><strong>How do you make an asynchronous function return a value?</strong><br>Return the value as part of resolving a promise.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</div><div class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123; resolve(<span class="string">'bar'</span>) &#125;, <span class="number">2000</span>);</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> response = <span class="keyword">await</span> foo();</div><div class="line">  <span class="built_in">console</span>.log(response);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><a href="https://ponyfoo.com/articles/understanding-javascript-async-await" target="_blank" rel="external">Ponyfoo article on async/await with promises</a></p>
-</li>
-<li><p><strong>Can callbacks be used with promises or is it one way or the other?</strong><br>You can use both. I like the below pattern.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">callback</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (callback) &#123;</div><div class="line">    callback();</div><div class="line">    <span class="keyword">return</span> <span class="literal">undefined</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</div><div class="line">    <span class="comment">// whatever</span></div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>What are the major differences between spawn, exec, and fork?</p>
-</li>
-</ol>
+<hr>
+<h3 id="When-exporting-the-API-of-a-Node-module-why-can-we-sometimes-use-exports-and-other-times-we-have-to-use-module-exports"><a href="#When-exporting-the-API-of-a-Node-module-why-can-we-sometimes-use-exports-and-other-times-we-have-to-use-module-exports" class="headerlink" title="When exporting the API of a Node module, why can we sometimes use exports and other times we have to use module.exports?"></a>When exporting the API of a Node module, why can we sometimes use exports and other times we have to use module.exports?</h3><p>exports is initially just an alias for module.exports. So if you write <code>exports.foo = &#39;bar&#39;</code>, it is actually <code>module.exports = { foo: &#39;bar&#39;}</code>. However if you want to export a function or an object instead of just key-value pairs, you can override the exports alias. So using <code>module.exports = function foo() {}</code> will cause exports and module.exports to no longer reference the same object.</p>
+<hr>
+<h3 id="Can-we-require-local-files-without-using-relative-paths"><a href="#Can-we-require-local-files-without-using-relative-paths" class="headerlink" title="Can we require local files without using relative paths?"></a>Can we require local files without using relative paths?</h3><p>Lots of different ways. This is probably the simplest.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// app.js</span></div><div class="line">global.__base = __dirname + <span class="string">'/'</span>;</div><div class="line"></div><div class="line"><span class="comment">// bar/whatever.js</span></div><div class="line"><span class="keyword">const</span> foo = <span class="built_in">require</span>(__base + <span class="string">'foo/whatever'</span>);</div></pre></td></tr></table></figure></p>
 <ul>
-<li><code>spawn</code> will ‘spawn’ a shell, execute a command within that shell and stream back the process output to the parent.</li>
-<li><code>exec</code> works the same as <code>spawn</code> except that its buffers the process output.</li>
-<li><code>fork</code></li>
+<li><a href="https://gist.github.com/branneman/8048520" target="_blank" rel="external">Gist with different options</a></li>
 </ul>
-<ol>
-<li><p>How does the cluster module work? How is it different than using a load balancer?</p>
-</li>
-<li><p><strong>What are the –harmony-* flags?</strong><br>Enables a staged V8 feature. This is a feature the V8 team has implemented but isn’t on by default due to it being almost but not yet complete. Use <code>node --v8-options | grep &quot;in progress&quot;</code> to list them.</p>
-</li>
-<li><p><strong>How can you read and inspect the memory usage of a Node.js process?</strong><br>Yes, either with any process manager outside Node, or using <code>process.memoryUsage()</code> inside Node.<br><a href="https://nodejs.org/api/process.html#process_process_memoryusage" target="_blank" rel="external">Node Docs on process.memoryUsage()</a></p>
-</li>
-<li><p><strong>Can reverse-search in commands history be used inside Node’s REPL?</strong><br>Not on Windows (as far as I know). On Linux, you install <a href="https://github.com/hanslub42/rlwrap" target="_blank" rel="external">rlwrap</a>, then run Node REPL as <code>NODE_NO_READLINE=1 rlwrap node</code>. Honestly not worth the effort.</p>
-</li>
-<li><p>What are V8 object and function templates?</p>
-</li>
-<li><p><strong>What is libuv and how does Node.js use it?</strong><br>To abstract the non-blocking I/O operations, so Node can be cross platform. It handles file system operations, TCP/UDP sockets, child processes etc. It is what provides Node with the Event loop.</p>
-</li>
-<li><p><strong>How can you make Node’s REPL always use JavaScript strict mode?</strong><br>Globally it is as simple as <code>alias node=node --use_strict</code>. Or define your own repl.js such that;</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> repl = <span class="built_in">require</span>(<span class="string">'repl'</span>);</div><div class="line"><span class="keyword">const</span> r = repl.start(&#123;</div><div class="line">  <span class="attr">replMode</span>: repl.REPL_MODE_STRICT</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-</li>
-<li><p><strong>How can we do one final operation before a Node process exits? Can that operation be done asynchronously?</strong><br>You can register a function for the exit event, but its synchronous. If you need your function to be asynchronous, use the beforeExit event like so;</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</div><div class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123; resolve(<span class="string">'bar'</span>) &#125;, <span class="number">2000</span>);</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> response = <span class="keyword">await</span> foo();</div><div class="line">  <span class="built_in">console</span>.log(response);</div><div class="line">&#125;</div><div class="line"></div><div class="line">process.once(<span class="string">"beforeExit"</span>, bar);</div></pre></td></tr></table></figure>
-<p><a href="https://nodejs.org/api/process.html#process_event_beforeexit" target="_blank" rel="external">Node Docs on beforeExit event</a></p>
-</li>
-<li><p><strong>Besides V8 and libuv, what other external dependencies does Node have?</strong></p>
-</li>
-</ol>
+<hr>
+<h3 id="What-is-the-Event-Loop-Is-it-part-of-V8"><a href="#What-is-the-Event-Loop-Is-it-part-of-V8" class="headerlink" title="What is the Event Loop? Is it part of V8?"></a>What is the Event Loop? Is it part of V8?</h3><p>It is Node’s method of implementing event-driven programming. A piece of code subscribes to an event, and registers a callback to fire when that event is emitted. It isn’t part of V8, it is part of libuv and runs on a different thread.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// foo.js</span></div><div class="line"><span class="keyword">const</span> util = <span class="built_in">require</span>(<span class="string">'util'</span>);</div><div class="line"><span class="keyword">const</span> EventEmitter = <span class="built_in">require</span>(<span class="string">'events'</span>).EventEmitter;</div><div class="line"><span class="keyword">const</span> Foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> self = <span class="keyword">this</span>;</div><div class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    self.emit(<span class="string">'event'</span>, <span class="string">'foo!'</span>)</div><div class="line">  &#125;, <span class="number">2000</span>)</div><div class="line">&#125;;</div><div class="line">util.inherits(Foo, EventEmitter);</div><div class="line"><span class="built_in">module</span>.exports = Foo;</div><div class="line"></div><div class="line"><span class="comment">// bar.js</span></div><div class="line"><span class="keyword">const</span> Foo = <span class="built_in">require</span>(<span class="string">'./foo.js'</span>)</div><div class="line"><span class="keyword">const</span> foo = <span class="keyword">new</span> Foo()</div><div class="line">foo.on(<span class="string">'event'</span>, (message) =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(message)</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
 <ul>
+<li><a href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/" target="_blank" rel="external">Node docs on the event Loop</a></li>
+</ul>
+<hr>
+<h3 id="What-is-the-Call-Stack-Is-it-part-of-V8"><a href="#What-is-the-Call-Stack-Is-it-part-of-V8" class="headerlink" title="What is the Call Stack? Is it part of V8?"></a>What is the Call Stack? Is it part of V8?</h3><p>It is a list of functions that are to be processed in FILO order. It is a part of V8.</p>
+<hr>
+<h3 id="What-is-the-difference-between-setImmediate-and-process-nextTick"><a href="#What-is-the-difference-between-setImmediate-and-process-nextTick" class="headerlink" title="What is the difference between setImmediate and process.nextTick?"></a>What is the difference between setImmediate and process.nextTick?</h3><p><code>setImmediate</code> puts the callback at the end of the event queue, so it will be processed after the current poll phase completes (during the check phase).</p>
+<p><code>process.nextTick</code> puts the callback at the beginning of the event queue, so it will be processed after the current operation, regardless of the current phase of the event loop.</p>
+<ul>
+<li><a href="https://nodejs.org/api/timers.html#timers_scheduling_timers" target="_blank" rel="external">Node Docs on Times</a></li>
+</ul>
+<hr>
+<h3 id="How-do-you-make-an-asynchronous-function-return-a-value"><a href="#How-do-you-make-an-asynchronous-function-return-a-value" class="headerlink" title="How do you make an asynchronous function return a value?"></a>How do you make an asynchronous function return a value?</h3><p>Return the value as part of resolving a promise.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</div><div class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123; resolve(<span class="string">'bar'</span>) &#125;, <span class="number">2000</span>)</div><div class="line">  &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> response = <span class="keyword">await</span> foo()</div><div class="line">  <span class="built_in">console</span>.log(response)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li><a href="https://ponyfoo.com/articles/understanding-javascript-async-await" target="_blank" rel="external">Ponyfoo article on async/await with promises</a></li>
+</ul>
+<hr>
+<h3 id="Can-callbacks-be-used-with-promises-or-is-it-one-way-or-the-other"><a href="#Can-callbacks-be-used-with-promises-or-is-it-one-way-or-the-other" class="headerlink" title="Can callbacks be used with promises or is it one way or the other?"></a>Can callbacks be used with promises or is it one way or the other?</h3><p>You can use both. I like the below pattern.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">callback</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (callback) &#123;</div><div class="line">    callback()</div><div class="line">    <span class="keyword">return</span> <span class="literal">undefined</span> <span class="comment">// Or something else</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</div><div class="line">    <span class="comment">// whatever</span></div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="What-are-the-major-differences-between-spawn-exec-and-fork"><a href="#What-are-the-major-differences-between-spawn-exec-and-fork" class="headerlink" title="What are the major differences between spawn, exec, and fork?"></a>What are the major differences between spawn, exec, and fork?</h3><p>spawn will ‘spawn’ a shell, execute a command within that shell and stream back the process output to the parent.</p>
+<p>exec works the same as spawn except that its buffers the process output. Better suited for simple tasks.</p>
+<p>fork starts a new Node process, with parent and child communicating through events. This is not the same as forking on Linux.</p>
+<ul>
+<li><a href="https://nodejs.org/api/child_process.html#child_process_child_process" target="_blank" rel="external">Node Docs on child processes</a></li>
+</ul>
+<hr>
+<h3 id="How-does-the-cluster-module-work-How-is-it-different-than-using-a-load-balancer"><a href="#How-does-the-cluster-module-work-How-is-it-different-than-using-a-load-balancer" class="headerlink" title="How does the cluster module work? How is it different than using a load balancer?"></a>How does the cluster module work? How is it different than using a load balancer?</h3><p>The cluster module forks multiple child processes. When the parent process receives a task, such as a http request, it chooses a child process to be responsible for that task. The difference between clustering and load balancing is that load balancing is done to distribute connections across multiple hosts, whereas clustering is done a single host.</p>
+<ul>
+<li><a href="https://nodejs.org/api/cluster.html#cluster_how_it_works" target="_blank" rel="external">Node Docs on the cluster module</a></li>
+</ul>
+<hr>
+<h3 id="What-are-the-–harmony-flags"><a href="#What-are-the-–harmony-flags" class="headerlink" title="What are the –harmony-* flags?"></a>What are the –harmony-* flags?</h3><p>Enables a staged V8 feature. This is a feature the V8 team has implemented but isn’t on by default due to it being almost but not yet complete. Use <code>node --v8-options | grep &quot;in progress&quot;</code> to list them.</p>
+<hr>
+<h3 id="How-can-you-read-and-inspect-the-memory-usage-of-a-Node-js-process"><a href="#How-can-you-read-and-inspect-the-memory-usage-of-a-Node-js-process" class="headerlink" title="How can you read and inspect the memory usage of a Node.js process?"></a>How can you read and inspect the memory usage of a Node.js process?</h3><p>Yes, either with any process manager outside Node, or using <code>process.memoryUsage()</code> inside Node.</p>
+<ul>
+<li><a href="https://nodejs.org/api/process.html#process_process_memoryusage" target="_blank" rel="external">Node Docs on process.memoryUsage()</a></li>
+</ul>
+<hr>
+<h3 id="Can-reverse-search-in-commands-history-be-used-inside-Node’s-REPL"><a href="#Can-reverse-search-in-commands-history-be-used-inside-Node’s-REPL" class="headerlink" title="Can reverse-search in commands history be used inside Node’s REPL?"></a>Can reverse-search in commands history be used inside Node’s REPL?</h3><p>Not on Windows (as far as I know). On Linux, you install <a href="https://github.com/hanslub42/rlwrap" target="_blank" rel="external">rlwrap</a>, then run Node REPL as <code>NODE_NO_READLINE=1 rlwrap node</code>. Honestly not worth the effort.</p>
+<hr>
+<h3 id="What-are-V8-object-and-function-templates"><a href="#What-are-V8-object-and-function-templates" class="headerlink" title="What are V8 object and function templates?"></a>What are V8 object and function templates?</h3><p>Function templates are blueprints for a single Javascript function. This is how you embed Javascript in a native C++ environment.</p>
+<p>Object templates are associated with function templates. They configure the objects that are created by the function template.</p>
+<ul>
+<li><a href="https://github.com/v8/v8/wiki/Embedder&#39;s-Guide#templates" target="_blank" rel="external">V8 Wiki on templates</a></li>
+</ul>
+<hr>
+<h3 id="What-is-libuv-and-how-does-Node-js-use-it"><a href="#What-is-libuv-and-how-does-Node-js-use-it" class="headerlink" title="What is libuv and how does Node.js use it?"></a>What is libuv and how does Node.js use it?</h3><p>Node uses libuv to abstract the non-blocking I/O operations, so Node can be cross platform. It handles file system operations, TCP/UDP sockets, child processes etc. It is what provides Node with the Event loop.</p>
+<hr>
+<h3 id="How-can-you-make-Node’s-REPL-always-use-JavaScript-strict-mode"><a href="#How-can-you-make-Node’s-REPL-always-use-JavaScript-strict-mode" class="headerlink" title="How can you make Node’s REPL always use JavaScript strict mode?"></a>How can you make Node’s REPL always use JavaScript strict mode?</h3><p>Globally you can always use <code>alias node=node --use_strict</code>, otherwise you can define your own repl.js such that;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> repl = <span class="built_in">require</span>(<span class="string">'repl'</span>);</div><div class="line"><span class="keyword">const</span> r = repl.start(&#123;</div><div class="line">  <span class="attr">replMode</span>: repl.REPL_MODE_STRICT</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="How-can-we-do-one-final-operation-before-a-Node-process-exits-Can-that-operation-be-done-asynchronously"><a href="#How-can-we-do-one-final-operation-before-a-Node-process-exits-Can-that-operation-be-done-asynchronously" class="headerlink" title="How can we do one final operation before a Node process exits? Can that operation be done asynchronously?"></a>How can we do one final operation before a Node process exits? Can that operation be done asynchronously?</h3><p>You can register a function for the exit event, but its synchronous. If you need your function to be asynchronous, use the beforeExit event like so;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</div><div class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123; resolve(<span class="string">'bar'</span>) &#125;, <span class="number">2000</span>);</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> response = <span class="keyword">await</span> foo();</div><div class="line">  <span class="built_in">console</span>.log(response);</div><div class="line">&#125;</div><div class="line"></div><div class="line">process.once(<span class="string">"beforeExit"</span>, bar);</div></pre></td></tr></table></figure></p>
+<ul>
+<li><a href="https://nodejs.org/api/process.html#process_event_beforeexit" target="_blank" rel="external">Node Docs on beforeExit event</a></li>
+</ul>
+<hr>
+<h3 id="Besides-V8-and-libuv-what-other-external-dependencies-does-Node-have"><a href="#Besides-V8-and-libuv-what-other-external-dependencies-does-Node-have" class="headerlink" title="Besides V8 and libuv, what other external dependencies does Node have?"></a>Besides V8 and libuv, what other external dependencies does Node have?</h3><ol>
 <li>http-parser - used parsing HTTP requests and responses.</li>
 <li>c-ares - used for asynchronous DNS queries</li>
 <li>OpenSSL - used for crypto functions</li>
-<li>zlib - used for asynchronous compression and decompression<br><a href="https://nodejs.org/en/docs/meta/topics/dependencies/0" target="_blank" rel="external">More information</a></li>
-</ul>
-<ol>
-<li><p><strong>What’s the problem with the process uncaughtException event? How is it different than the exit event?</strong><br>On uncaughtException, Node will default to printing the stack trace and exiting. If we register an event handler on the uncaughtException event, Node will not exit. So you can produce some unexpected behaviour and is usually a sign that someone is using the wrong approach or isn’t handling their errors.<br><a href="https://nodejs.org/api/process.html#process_event_uncaughtexception" target="_blank" rel="external">More information</a></p>
-</li>
-<li><p>Do Node buffers use V8 memory? Can they be resized?</p>
-</li>
-<li><p><strong>What’s the difference between Buffer.alloc and Buffer.allocUnsafe?</strong><br><code>Buffer.alloc</code> allocates a memory chunk and goes through an initialization process of setting all the cells to zero, then returning this wrapped in a Node Buffer object. <code>Buffer.allocUnsafe</code> does the same steps except for the initialization process. The unsafe part is that this could leak sensitive user information. The reason for both is that there may be applications where the initialization process produces too much overhead.</p>
-</li>
-<li><p><strong>How is the slice method on buffers different from that on arrays?</strong></p>
-</li>
+<li>zlib - used for asynchronous compression and decompression</li>
 </ol>
 <ul>
+<li><a href="https://nodejs.org/en/docs/meta/topics/dependencies/0" target="_blank" rel="external">Node Docs on dependencies</a></li>
+</ul>
+<hr>
+<h3 id="What’s-the-problem-with-the-process-uncaughtException-event-How-is-it-different-than-the-exit-event"><a href="#What’s-the-problem-with-the-process-uncaughtException-event-How-is-it-different-than-the-exit-event" class="headerlink" title="What’s the problem with the process uncaughtException event? How is it different than the exit event?"></a>What’s the problem with the process uncaughtException event? How is it different than the exit event?</h3><p>On uncaughtException event, Node will default to printing the stack trace and exiting. If we register an event handler on the uncaughtException event, Node will not exit. Your event will in effect override the default. So you can produce some unexpected behaviour. Using this event is usually a sign that someone is using the wrong approach or isn’t handling their errors in the appropriate section of their program.</p>
+<ul>
+<li><a href="https://nodejs.org/api/process.html#process_event_uncaughtexception" target="_blank" rel="external">Node Docs on uncaughtException event</a></li>
+</ul>
+<hr>
+<h3 id="Do-Node-buffers-use-V8-memory-Can-they-be-resized"><a href="#Do-Node-buffers-use-V8-memory-Can-they-be-resized" class="headerlink" title="Do Node buffers use V8 memory? Can they be resized?"></a>Do Node buffers use V8 memory? Can they be resized?</h3><p>No, they do not use V8 memory and they cannot be resized.</p>
+<blockquote>
+<p>Instances of the Buffer class are similar to arrays of integers but correspond to fixed-sized, raw memory allocations outside the V8 heap.</p>
+</blockquote>
+<ul>
+<li><a href="https://nodejs.org/api/buffer.html#buffer_buffer" target="_blank" rel="external">Node Docs on buffers</a></li>
+</ul>
+<hr>
+<h3 id="What’s-the-difference-between-Buffer-alloc-and-Buffer-allocUnsafe"><a href="#What’s-the-difference-between-Buffer-alloc-and-Buffer-allocUnsafe" class="headerlink" title="What’s the difference between Buffer.alloc and Buffer.allocUnsafe?"></a>What’s the difference between Buffer.alloc and Buffer.allocUnsafe?</h3><p><code>Buffer.alloc</code> allocates a memory chunk and goes through an initialization process of setting all the cells to zero, then returning this wrapped in a Node Buffer object.</p>
+<p><code>Buffer.allocUnsafe</code> does the same steps except for the initialization process. The unsafe part is that this could leak sensitive user information. The reason for both is that there may be applications where the initialization process produces too much overhead.</p>
+<hr>
+<h3 id="How-is-the-slice-method-on-buffers-different-from-that-on-arrays"><a href="#How-is-the-slice-method-on-buffers-different-from-that-on-arrays" class="headerlink" title="How is the slice method on buffers different from that on arrays?"></a>How is the slice method on buffers different from that on arrays?</h3><ol>
 <li>Calling slice on an array returns an array but does not mutate the existing array.</li>
 <li>Calling splice on an array returns an array and mutates the existing array.</li>
-<li>Calling slice on a buffer returns a reference to the same chunk of memory, but offset and cropped. Mutating the data in that reference will mutate the data in the original buffer.<br><a href="https://nodejs.org/api/buffer.html#buffer_buf_slice_start_end" target="_blank" rel="external">Node Docs on Buffer slice</a></li>
-</ul>
-<ol>
-<li><p>What is the string_decoder module useful for? How is it different than casting buffers to strings?<br>It is useful for decoding Buffer objects into strings. You can just call <code>buffer.toString()</code>, but string_decoder handles multibyte UTF-8 and UTF-16 characters.<br><a href="https://nodejs.org/api/string_decoder.html#string_decoder_string_decoder" target="_blank" rel="external">Node Docs on string_decoder</a></p>
-</li>
-<li><p>What are the 5 major steps that the require function does?</p>
-<ul>
-<li>Resolving - Find the module in the file system</li>
-<li>Loading -</li>
-<li>Wrapping</li>
-<li>Evaluating</li>
-<li>Caching</li>
-</ul>
-</li>
-<li><p>What is the require.resolve function and what is it useful for?<br>It invokes only the resolve step in the require process (the first step). It is useful to verify that a module exists, possibly for some optional package. You can see where Node will look with <code>console.log(module.paths)</code>.</p>
-</li>
-<li><p><strong>What is the main property in package.json useful for?</strong><br>Indicating the entry point to the program.<br><a href="https://docs.npmjs.com/files/package.json#main" target="_blank" rel="external">npm Docs on package.json</a></p>
-</li>
-<li><p>What are circular modular dependencies in Node and how can they be avoided?</p>
-</li>
-<li><p><strong>What are the 3 file extensions that will be automatically tried by the require function?</strong><br><code>.js</code>, <code>.json</code> and <code>.node</code> in that order.<br><a href="https://nodejs.org/api/modules.html#modules_file_modules" target="_blank" rel="external">Node Docs on File Modules</a></p>
-</li>
-<li><p><strong>When creating an http server and writing a response for a request, why is the end() function required?</strong><br>Because the response object is a stream. Therefore we need to indicate that we have finished writing data.</p>
-</li>
-<li><p><strong>When is it ok to use the file system *Sync methods?</strong><br>In applications where blocking is appropriate. For example, a CLI tool that performs synchronous operations would be appropriate. A web server that is handling multiple concurrent clients would not.</p>
-</li>
-<li><p><strong>How can you print only one level of a deeply nested object?</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">util.inspect(foo, &#123; <span class="attr">depth</span>: <span class="number">0</span> &#125;)</div></pre></td></tr></table></figure>
-<p><a href="https://nodejs.org/api/util.html#util_util_inspect_object_options" target="_blank" rel="external">Node Docs on util.inspect</a></p>
-</li>
-<li><p><strong>What is the node-gyp package used for?</strong><br>gyp is a ‘meta-build system’. It generates other build systems. This enables cross platform support. Node uses gyp as node-gyp to compile addon modules as native.</p>
-</li>
-<li><p><strong>The objects exports, require, and module are all globally available in every module but they are different in every module. How?</strong><br>Node wraps each module in the function below. So, exports, require and module appear to the module as global variables but actually they are module-specific.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">exports, require, module, __filename, __dirname</span>) </span>&#123;</div><div class="line"><span class="comment">// Module code actually lives in here</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p><a href="https://nodejs.org/api/modules.html#modules_the_module_wrapper" target="_blank" rel="external">Node Docs on the module wrapper</a></p>
-</li>
-<li><p>How can a module be both requirable by other modules and executable directly using the node command?<br>Using the following conditional.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="built_in">require</span>.main === <span class="built_in">module</span>) &#123;</div><div class="line">  <span class="comment">// Executed directly</span></div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">  <span class="comment">// Required</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><a href="https://nodejs.org/api/modules.html#modules_accessing_the_main_module" target="_blank" rel="external">Node Docs on accesing the main module</a></p>
-</li>
-<li><p>What’s an example of a built-in stream in Node that is both readable and writable?</p>
-</li>
-<li><p>What’s the difference between using event emitters and using simple callback functions to allow for asynchronous handling of code?</p>
-</li>
-<li><p>The require function always caches the module it requires. What can you do if you need to execute the code in a required module many times?</p>
-</li>
-<li><p>What’s the difference between the Paused and the Flowing modes of readable streams?</p>
-</li>
-<li><p>What does the –inspect argument do for the node command?</p>
-</li>
-<li><p>When working with streams, when do you use the pipe function and when do you use events? Can those two methods be combined?</p>
-</li>
+<li>Calling slice on a buffer returns a reference to the same chunk of memory, but offset and cropped. Mutating the data in that reference will mutate the data in the original buffer.</li>
 </ol>
+<ul>
+<li><a href="https://nodejs.org/api/buffer.html#buffer_buf_slice_start_end" target="_blank" rel="external">Node Docs on Buffer slice</a></li>
+</ul>
+<hr>
+<h3 id="What-is-the-string-decoder-module-useful-for-How-is-it-different-than-casting-buffers-to-string"><a href="#What-is-the-string-decoder-module-useful-for-How-is-it-different-than-casting-buffers-to-string" class="headerlink" title="What is the string_decoder module useful for? How is it different than casting buffers to string"></a>What is the string_decoder module useful for? How is it different than casting buffers to string</h3><p>It is useful for decoding Buffer objects into strings. You can just call <code>buffer.toString()</code>, but string_decoder handles multibyte UTF-8 and UTF-16 characters.**</p>
+<ul>
+<li><a href="https://nodejs.org/api/string_decoder.html#string_decoder_string_decoder" target="_blank" rel="external">Node Docs on string_decoder</a></li>
+</ul>
+<hr>
+<h3 id="What-are-the-5-major-steps-that-the-require-function-does"><a href="#What-are-the-5-major-steps-that-the-require-function-does" class="headerlink" title="What are the 5 major steps that the require function does?"></a>What are the 5 major steps that the require function does?</h3><ol>
+<li>Resolving - Find the module in the file system</li>
+<li>Loading - Determine its filetype</li>
+<li>Wrapping - Wrap the function in Node’s module wrapper, so it is private but appears global.</li>
+<li>Evaluating - Actually process the code</li>
+<li>Caching - Store a copy in memory for if required again.</li>
+</ol>
+<ul>
+<li><a href="https://medium.freecodecamp.org/requiring-modules-in-node-js-everything-you-need-to-know-e7fbd119be8" target="_blank" rel="external">Samer Buna’s (quiz author) article on require</a></li>
+</ul>
+<hr>
+<h3 id="What-is-the-require-resolve-function-and-what-is-it-useful-for"><a href="#What-is-the-require-resolve-function-and-what-is-it-useful-for" class="headerlink" title="What is the require.resolve function and what is it useful for?"></a>What is the require.resolve function and what is it useful for?</h3><p>It invokes only the resolve step in the require process. It is useful to verify that a module exists, possibly for some optional package. You can see where Node will look with <code>console.log(module.paths)</code>.</p>
+<hr>
+<h3 id="What-is-the-main-property-in-package-json-useful-for"><a href="#What-is-the-main-property-in-package-json-useful-for" class="headerlink" title="What is the main property in package.json useful for?"></a>What is the main property in package.json useful for?</h3><p>It indicates the entry point to the program. So when your package is require, your main module’s export object is return. NPM needs to know where to look for your main module.</p>
+<ul>
+<li><a href="https://docs.npmjs.com/files/package.json#main" target="_blank" rel="external">npm Docs on package.json</a></li>
+</ul>
+<hr>
+<h3 id="What-are-circular-modular-dependencies-in-Node-and-how-can-they-be-avoided"><a href="#What-are-circular-modular-dependencies-in-Node-and-how-can-they-be-avoided" class="headerlink" title="What are circular modular dependencies in Node and how can they be avoided?"></a>What are circular modular dependencies in Node and how can they be avoided?</h3><p>Circular dependencies are when A requires B, while B requires A. There are can be many more packages inbetween A and B which makes the chain hard to recognize. They are avoided in Node by returning a unfinished exports object to B, thus breaking the loop. They are avoided in real-world scenarios by having a treelike structure to a codebase where there are clear parent-child relationships that do not flow back up the tree.</p>
+<ul>
+<li><a href="https://nodejs.org/api/modules.html#modules_cycles" target="_blank" rel="external">Node Docs on module cycles</a></li>
+</ul>
+<hr>
+<h3 id="What-are-the-3-file-extensions-that-will-be-automatically-tried-by-the-require-function"><a href="#What-are-the-3-file-extensions-that-will-be-automatically-tried-by-the-require-function" class="headerlink" title="What are the 3 file extensions that will be automatically tried by the require function?"></a>What are the 3 file extensions that will be automatically tried by the require function?</h3><p>.js, .json and .node in that order.</p>
+<ul>
+<li><a href="https://nodejs.org/api/modules.html#modules_file_modules" target="_blank" rel="external">Node Docs on File Modules</a></li>
+</ul>
+<hr>
+<h3 id="When-creating-an-http-server-and-writing-a-response-for-a-request-why-is-the-end-function-required"><a href="#When-creating-an-http-server-and-writing-a-response-for-a-request-why-is-the-end-function-required" class="headerlink" title="When creating an http server and writing a response for a request, why is the end() function required?"></a>When creating an http server and writing a response for a request, why is the end() function required?</h3><p>Because the response object is a stream. Therefore we need to indicate to the receiver that we have finished writing data.</p>
+<hr>
+<h3 id="When-is-it-ok-to-use-the-file-system-Sync-methods"><a href="#When-is-it-ok-to-use-the-file-system-Sync-methods" class="headerlink" title="When is it ok to use the file system *Sync methods?"></a>When is it ok to use the file system *Sync methods?</h3><p>In applications where blocking is appropriate. For example, a CLI tool that performs synchronous operations would be appropriate. A web server that is handling multiple concurrent clients would not.</p>
+<hr>
+<h3 id="How-can-you-print-only-one-level-of-a-deeply-nested-object"><a href="#How-can-you-print-only-one-level-of-a-deeply-nested-object" class="headerlink" title="How can you print only one level of a deeply nested object?"></a>How can you print only one level of a deeply nested object?</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">util.inspect(foo, &#123; <span class="attr">depth</span>: <span class="number">0</span> &#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://nodejs.org/api/util.html#util_util_inspect_object_options" target="_blank" rel="external">Node Docs on util.inspect</a></li>
+</ul>
+<hr>
+<h3 id="What-is-the-node-gyp-package-used-for"><a href="#What-is-the-node-gyp-package-used-for" class="headerlink" title="What is the node-gyp package used for?"></a>What is the node-gyp package used for?</h3><p>gyp is a ‘meta-build system’. It generates other build systems. This enables cross platform support. Node uses gyp as node-gyp to compile addon modules as native.</p>
+<hr>
+<h3 id="The-objects-exports-require-and-module-are-all-globally-available-in-every-module-but-they-are-different-in-every-module-How"><a href="#The-objects-exports-require-and-module-are-all-globally-available-in-every-module-but-they-are-different-in-every-module-How" class="headerlink" title="The objects exports, require, and module are all globally available in every module but they are different in every module. How?"></a>The objects exports, require, and module are all globally available in every module but they are different in every module. How?</h3><p>Node wraps each module in the function below. So, exports, require and module appear to the module as global variables but actually they are module-specific.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">exports, require, module, __filename, __dirname</span>) </span>&#123;</div><div class="line"><span class="comment">// Module code actually lives in here</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<ul>
+<li><a href="https://nodejs.org/api/modules.html#modules_the_module_wrapper" target="_blank" rel="external">Node Docs on the module wrapper</a></li>
+</ul>
+<hr>
+<h3 id="How-can-a-module-be-both-requirable-by-other-modules-and-executable-directly-using-the-node-command"><a href="#How-can-a-module-be-both-requirable-by-other-modules-and-executable-directly-using-the-node-command" class="headerlink" title="How can a module be both requirable by other modules and executable directly using the node command?"></a>How can a module be both requirable by other modules and executable directly using the node command?</h3><p>Using the following conditional.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="built_in">require</span>.main === <span class="built_in">module</span>) &#123;</div><div class="line">  <span class="comment">// Executed directly</span></div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">  <span class="comment">// Required</span></div><div class="line">  <span class="built_in">module</span>.exports = foo</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li><a href="https://nodejs.org/api/modules.html#modules_accessing_the_main_module" target="_blank" rel="external">Node Docs on accessing the main module</a></li>
+</ul>
+<hr>
+<h3 id="What’s-an-example-of-a-built-in-stream-in-Node-that-is-both-readable-and-writable"><a href="#What’s-an-example-of-a-built-in-stream-in-Node-that-is-both-readable-and-writable" class="headerlink" title="What’s an example of a built-in stream in Node that is both readable and writable?"></a>What’s an example of a built-in stream in Node that is both readable and writable?</h3><blockquote>
+<p>A net.Socket is also a duplex stream, so it can be both readable and writable, and it is also a EventEmitter.</p>
+</blockquote>
+<ul>
+<li><a href="https://nodejs.org/api/net.html#net_class_net_socket" target="_blank" rel="external">Node docs on net module</a></li>
+</ul>
+<hr>
+<h3 id="What’s-the-difference-between-using-event-emitters-and-using-simple-callback-functions-to-allow-for-asynchronous-handling-of-code"><a href="#What’s-the-difference-between-using-event-emitters-and-using-simple-callback-functions-to-allow-for-asynchronous-handling-of-code" class="headerlink" title="What’s the difference between using event emitters and using simple callback functions to allow for asynchronous handling of code?"></a>What’s the difference between using event emitters and using simple callback functions to allow for asynchronous handling of code?</h3><p>There are a few. The code being executed remains with the client code rather than being handed over, which has all sorts of implications if a variable needs to be changed. I suppose the most notably difference is multiple clients can subscribe to an event easily and all operate independently. To implement the same thing using a callback structure would be quite cumbersome, you’d have to store an array of callbacks. On the other hand, simple callback functions are just that, simple, and which makes events overkill for a whole bunch of usecases.</p>
+<hr>
+<h3 id="The-require-function-always-caches-the-module-it-requires-What-can-you-do-if-you-need-to-execute-the-code-in-a-required-module-many-times"><a href="#The-require-function-always-caches-the-module-it-requires-What-can-you-do-if-you-need-to-execute-the-code-in-a-required-module-many-times" class="headerlink" title="The require function always caches the module it requires. What can you do if you need to execute the code in a required module many times?"></a>The require function always caches the module it requires. What can you do if you need to execute the code in a required module many times?</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// module.js</span></div><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="built_in">console</span>.log(<span class="string">'foo'</span>) &#125;</div><div class="line"></div><div class="line"><span class="comment">// app.js</span></div><div class="line"><span class="built_in">require</span>(<span class="string">'./module.js'</span>)()</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="What’s-the-difference-between-the-Paused-and-the-Flowing-modes-of-readable-streams"><a href="#What’s-the-difference-between-the-Paused-and-the-Flowing-modes-of-readable-streams" class="headerlink" title="What’s the difference between the Paused and the Flowing modes of readable streams?"></a>What’s the difference between the Paused and the Flowing modes of readable streams?</h3><blockquote>
+<p>When in flowing mode, data is read from the underlying system automatically and provided to an application as quickly as possible using events via the EventEmitter interface.</p>
+<p>In paused mode, the stream.read() method must be called explicitly to read chunks of data from the stream.</p>
+</blockquote>
+<ul>
+<li><a href="https://nodejs.org/api/stream.html#stream_two_modes" target="_blank" rel="external">Node docs on streams</a></li>
+</ul>
+<hr>
+<h3 id="What-does-the-–inspect-argument-do-for-the-node-command"><a href="#What-does-the-–inspect-argument-do-for-the-node-command" class="headerlink" title="What does the –inspect argument do for the node command?"></a>What does the –inspect argument do for the node command?</h3><p>Attaches Chrome DevTools to the Node instance for debugging purposes. You also probably want to use the –debug-brk option to have it break on first line.</p>
+<hr>
+<h3 id="When-working-with-streams-when-do-you-use-the-pipe-function-and-when-do-you-use-events-Can-those-two-methods-be-combined"><a href="#When-working-with-streams-when-do-you-use-the-pipe-function-and-when-do-you-use-events-Can-those-two-methods-be-combined" class="headerlink" title="When working with streams, when do you use the pipe function and when do you use events? Can those two methods be combined?"></a>When working with streams, when do you use the pipe function and when do you use events? Can those two methods be combined?</h3><p>Piping is used when you want to connect a readable stream to a writable stream and don’t need to worry about chunks. If you did want to manually handle chunks (for example if you were displaying a progress bar), then you would need to use events. And they can be combined like so;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</div><div class="line"><span class="keyword">const</span> rs = fs.createReadStream(<span class="string">'./foo.js'</span>)</div><div class="line">rs.pipe(process.stdout)</div><div class="line">rs.on(<span class="string">'end'</span>, () =&gt; &#123; <span class="built_in">console</span>.log(<span class="string">'end'</span>) &#125;)</div></pre></td></tr></table></figure></p>
 ]]></content>
       
+        <categories>
+            
+            <category> Javascript </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> javascript </tag>
+            
+            <tag> nodejs </tag>
+            
+        </tags>
         
     </entry>
     
@@ -199,10 +307,16 @@
       
         <categories>
             
-            <category> Regex Crossword </category>
+            <category> Fun and Games </category>
             
         </categories>
         
+        
+        <tags>
+            
+            <tag> regex crossword </tag>
+            
+        </tags>
         
     </entry>
     
@@ -220,10 +334,16 @@
       
         <categories>
             
-            <category> Regex Crossword </category>
+            <category> Fun and Games </category>
             
         </categories>
         
+        
+        <tags>
+            
+            <tag> regex crossword </tag>
+            
+        </tags>
         
     </entry>
     
@@ -241,10 +361,16 @@
       
         <categories>
             
-            <category> Regex Crossword </category>
+            <category> Fun and Games </category>
             
         </categories>
         
+        
+        <tags>
+            
+            <tag> regex crossword </tag>
+            
+        </tags>
         
     </entry>
     
@@ -262,10 +388,16 @@
       
         <categories>
             
-            <category> Regex Crossword </category>
+            <category> Fun and Games </category>
             
         </categories>
         
+        
+        <tags>
+            
+            <tag> regex crossword </tag>
+            
+        </tags>
         
     </entry>
     
@@ -283,10 +415,16 @@
       
         <categories>
             
-            <category> Regex Crossword </category>
+            <category> Fun and Games </category>
             
         </categories>
         
+        
+        <tags>
+            
+            <tag> regex crossword </tag>
+            
+        </tags>
         
     </entry>
     
@@ -304,10 +442,16 @@
       
         <categories>
             
-            <category> Regex Crossword </category>
+            <category> Fun and Games </category>
             
         </categories>
         
+        
+        <tags>
+            
+            <tag> regex crossword </tag>
+            
+        </tags>
         
     </entry>
     
@@ -338,10 +482,16 @@
       
         <categories>
             
-            <category> Book Review </category>
+            <category> Book Reviews </category>
             
         </categories>
         
+        
+        <tags>
+            
+            <tag> non-fiction </tag>
+            
+        </tags>
         
     </entry>
     
@@ -359,10 +509,16 @@
       
         <categories>
             
-            <category> Regex Crossword </category>
+            <category> Fun and Games </category>
             
         </categories>
         
+        
+        <tags>
+            
+            <tag> regex crossword </tag>
+            
+        </tags>
         
     </entry>
     
