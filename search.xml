@@ -3,6 +3,247 @@
   
     
     <entry>
+      <title><![CDATA[COSC1285 Algorithms Week 2]]></title>
+      <url>/2017/07/31/COSC1285/COSC1285-Algorithms-Week-2/</url>
+      <content type="html"><![CDATA[<p>Notes from lectures on Big O and Big Omega notation for grouping algorithms by orders of growth.</p>
+<a id="more"></a>
+<h3 id="Common-Equivalence-Classes"><a href="#Common-Equivalence-Classes" class="headerlink" title="Common Equivalence Classes"></a>Common Equivalence Classes</h3><p>Table of common usage is in textbook page 59 (pdf 87)</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Big O</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Constant</td>
+<td>$O(1)$</td>
+<td>Access array element</td>
+</tr>
+<tr>
+<td>Logarithmic</td>
+<td>$O(\log{n})$</td>
+<td>Binary search</td>
+</tr>
+<tr>
+<td>Linear</td>
+<td>$O(n)$</td>
+<td>Link list search</td>
+</tr>
+<tr>
+<td>Linearithmic (Supralinear)</td>
+<td>$O(n\log{n})$</td>
+<td>Merge sorting</td>
+</tr>
+<tr>
+<td>Quadratic</td>
+<td>$O(n^2)$</td>
+<td>Selection sorting</td>
+</tr>
+<tr>
+<td>Exponential</td>
+<td>$O(2^n)$</td>
+<td>Generating all subsets</td>
+</tr>
+<tr>
+<td>Factorial</td>
+<td>$O(n!)$</td>
+<td>Generating all permutations</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="Upper-and-Lower-Bound-Examples"><a href="#Upper-and-Lower-Bound-Examples" class="headerlink" title="Upper and Lower Bound Examples"></a>Upper and Lower Bound Examples</h3><ul>
+<li>$O$ Upper Bound. Equal or lower order of growth.</li>
+<li>$\Omega$ Lower Bound. Equal or higher order of growth</li>
+</ul>
+<p>Explanation of these is in textbook page 52 (pdf 80)</p>
+<p>Therefore the lecture examples;</p>
+<table>
+<thead>
+<tr>
+<th>$t(n)$</th>
+<th style="text-align:center">$O(n)$</th>
+<th style="text-align:center">$O(n^2)$</th>
+<th style="text-align:center">$O(n^3)$</th>
+<th style="text-align:center">$\Omega{(n)}$</th>
+<th style="text-align:center">$\Omega{(n^2)}$</th>
+<th style="text-align:center">$\Omega{(n^3)}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\log_2{n}$</td>
+<td style="text-align:center"><strong>T</strong></td>
+<td style="text-align:center"><strong>T</strong></td>
+<td style="text-align:center"><strong>T</strong></td>
+<td style="text-align:center">F</td>
+<td style="text-align:center">F</td>
+<td style="text-align:center">F</td>
+</tr>
+<tr>
+<td>$10n+5$</td>
+<td style="text-align:center"><strong>T</strong></td>
+<td style="text-align:center"><strong>T</strong></td>
+<td style="text-align:center"><strong>T</strong></td>
+<td style="text-align:center"><strong>T</strong></td>
+<td style="text-align:center">F</td>
+<td style="text-align:center">F</td>
+</tr>
+<tr>
+<td>$\frac{n(n-1)}{2}$</td>
+<td style="text-align:center">F</td>
+<td style="text-align:center"><strong>T</strong></td>
+<td style="text-align:center"><strong>T</strong></td>
+<td style="text-align:center"><strong>T</strong></td>
+<td style="text-align:center"><strong>T</strong></td>
+<td style="text-align:center">F</td>
+</tr>
+<tr>
+<td>$(n+1)^3$</td>
+<td style="text-align:center">F</td>
+<td style="text-align:center">F</td>
+<td style="text-align:center"><strong>T</strong></td>
+<td style="text-align:center"><strong>T</strong></td>
+<td style="text-align:center"><strong>T</strong></td>
+<td style="text-align:center"><strong>T</strong></td>
+</tr>
+<tr>
+<td>$2^n$</td>
+<td style="text-align:center">F</td>
+<td style="text-align:center">F</td>
+<td style="text-align:center">F</td>
+<td style="text-align:center"><strong>T</strong></td>
+<td style="text-align:center"><strong>T</strong></td>
+<td style="text-align:center"><strong>T</strong></td>
+</tr>
+</tbody>
+</table>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> COSC1285 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[COSC1285 Algorithms Week 1]]></title>
+      <url>/2017/07/31/COSC1285/COSC1285-Algorithms-Week-1/</url>
+      <content type="html"><![CDATA[<p>Some Javascript implementations of two algorithms from the <strong><em>Introduction to the Design and Analysis of Algorithms</em></strong> textbook.</p>
+<a id="more"></a>
+<h3 id="ALGORITHM-Euclid-m-n"><a href="#ALGORITHM-Euclid-m-n" class="headerlink" title="ALGORITHM Euclid(m, n)"></a>ALGORITHM Euclid(m, n)</h3><figure class="highlight smali"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//Computes gcd(m, n) by Euclid’s algorithm</div><div class="line">//Input: Two nonnegative,<span class="built_in"> not-both-zero </span>integers m<span class="built_in"> and </span>n</div><div class="line">//Output: Greatest common divisor of m<span class="built_in"> and </span>n</div><div class="line">while n = 0 do</div><div class="line">  r ← m mod n</div><div class="line">  m ← n</div><div class="line">  n ← r<span class="built_in"></span></div><div class="line">return m</div></pre></td></tr></table></figure>
+<p>In javascript this would look like this. We can make use of an implicit return and ternary function to have a one-liner.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> gcd = <span class="function">(<span class="params">m, n</span>) =&gt;</span> (n &gt; <span class="number">0</span> ? gcd(n, m % n) : m);</div><div class="line"><span class="built_in">console</span>.log(gcd(process.argv[<span class="number">2</span>], process.argv[<span class="number">3</span>]));</div></pre></td></tr></table></figure>
+<p>Testing the output it appears to work.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># node gcd.js 60 24</span></div><div class="line">12</div></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="ALGORITHM-Sieve-n"><a href="#ALGORITHM-Sieve-n" class="headerlink" title="ALGORITHM Sieve(n)"></a>ALGORITHM Sieve(n)</h3><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">//Implements <span class="keyword">the</span> sieve <span class="keyword">of</span> Eratosthenes<span class="comment"></span></div><div class="line">//Input: A positive integer n &gt; 1<span class="comment"></span></div><div class="line">//Output: Array L of all prime numbers less than or equal to n</div><div class="line"><span class="number">1.1</span> What Is <span class="keyword">an</span> Algorithm? <span class="number">7</span></div><div class="line"><span class="keyword">for</span> p ← <span class="number">2</span> <span class="built_in">to</span> n <span class="built_in">do</span> A[p] ← p</div><div class="line"><span class="keyword">for</span> p ← <span class="number">2</span> <span class="built_in">to</span> √n <span class="built_in">do</span><span class="comment"> //see note before pseudocode</span></div><div class="line">  <span class="keyword">if</span> A[p] = <span class="number">0</span><span class="comment"> //p hasn’t been eliminated on previous passes</span></div><div class="line">    j ← p ∗ p</div><div class="line">    <span class="keyword">while</span> j ≤ n <span class="built_in">do</span></div><div class="line">      A[j] ← <span class="number">0</span><span class="comment"> //mark element as eliminated</span></div><div class="line">      j ← j + p<span class="comment"></span></div><div class="line">//copy the remaining elements of A to array L of the primes</div><div class="line">i ← <span class="number">0</span></div><div class="line"><span class="keyword">for</span> p ← <span class="number">2</span> <span class="built_in">to</span> n <span class="built_in">do</span></div><div class="line">  <span class="keyword">if</span> A[p] = <span class="number">0</span></div><div class="line">    L[i]← A[p]</div><div class="line">    i ← i + <span class="number">1</span></div><div class="line"><span class="literal">return</span> L</div></pre></td></tr></table></figure>
+<p>If I was trying to create a function to find primes, I would like to do this differently (say with a linked list), but I wanted to implement the example exactly. I also ignored the section at the end to copy the array to a new array L because it isn’t necessary.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> sieve = <span class="function"><span class="params">n</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">const</span> array = [];</div><div class="line">  <span class="keyword">const</span> limit = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.sqrt(n));</div><div class="line">  <span class="keyword">const</span> iterations = &#123;</div><div class="line">    <span class="attr">outerLoop</span>: <span class="number">0</span>,</div><div class="line">    <span class="attr">innerLoop</span>: <span class="number">0</span></div><div class="line">  &#125;;</div><div class="line">  <span class="keyword">let</span> j, p;</div><div class="line"></div><div class="line">  <span class="keyword">for</span> (p = <span class="number">2</span>; p &lt;= n; p++) array[p] = p;</div><div class="line"></div><div class="line">  <span class="keyword">for</span> (p = <span class="number">2</span>; p &lt;= limit; p++) &#123;</div><div class="line">    iterations.outerLoop++;</div><div class="line">    <span class="keyword">if</span> (array[p]) &#123;</div><div class="line">      j = p * p;</div><div class="line">      <span class="keyword">while</span> (j &lt;= n) &#123;</div><div class="line">        iterations.innerLoop++;</div><div class="line">        array[j] = <span class="number">0</span>;</div><div class="line">        j += p;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="built_in">console</span>.log(iterations);</div><div class="line">  <span class="keyword">return</span> array.filter(<span class="function"><span class="params">value</span> =&gt;</span> value);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(sieve(process.argv[<span class="number">2</span>]).join(<span class="string">", "</span>));</div></pre></td></tr></table></figure>
+<p>And it appears to work. Fantastic :)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># node sieve.js 100</span></div><div class="line">&#123; outerLoop: 9, innerLoop: 104 &#125;</div><div class="line">2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97</div></pre></td></tr></table></figure>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> javascript </tag>
+            
+            <tag> COSC1285 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[ISYS1126 Web Database Applications Quiz 1]]></title>
+      <url>/2017/07/30/ISYS1126/ISYS1126-Quiz-1/</url>
+      <content type="html"><![CDATA[<p>&nbsp;</p>
+<a id="more"></a>
+<h3 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h3><ul>
+<li>Which of the following PHP methods issues a warning upon encountering an error? <strong>include</strong></li>
+<li>Which of the following PHP methods terminates upon encountering an error? <strong>require</strong></li>
+<li>Which of the following promotes code reuse? <strong>trait</strong></li>
+<li>It is possible to instantiate a trait. <strong>false</strong></li>
+<li>In PHP, it is possible to create a static variable. <strong>true</strong></li>
+<li><strong>Scope resolution</strong> operator is used to call a static method via Class name in PHP.</li>
+<li>In PHP, the pseudo-variable <strong>$this</strong> is available when a method is called from within an object context.</li>
+<li>In PHP, the <strong>-&gt;</strong> operator is used to call class methods via object(s).</li>
+<li>In PHP a constructor is defined with the keyword <strong>__construct</strong></li>
+<li><strong>Protected</strong> in PHP makes sure that the class member is accessible via derived class.</li>
+<li><strong>Final</strong> keyword prevents the overriding of a method in the child class.</li>
+</ul>
+<h3 id="Patterns"><a href="#Patterns" class="headerlink" title="Patterns"></a>Patterns</h3><ul>
+<li>An <strong>interface</strong> is a supertype that specifies method headers without implementations.</li>
+<li>In <strong>singleton</strong> pattern, a class has one instance, It provides a global access point to it.</li>
+<li><strong>Strategy</strong> pattern makes a family algorithm and encapsulates each algorithm.</li>
+<li>Proxy pattern makes a family algorithm and encapsulates each algorithm. <strong>false</strong></li>
+</ul>
+<h3 id="Laravel"><a href="#Laravel" class="headerlink" title="Laravel"></a>Laravel</h3><ul>
+<li><strong>Composer</strong> is a dependency manager used by Laravel.</li>
+<li>Laravel uses <strong>MVC</strong> approach.</li>
+<li>Which of the following ORM is shipped with Laravel? <strong>Eloquent</strong></li>
+<li>In a laravel project, route file is called as <strong>web.php</strong>.</li>
+<li>In Laravel, routes use a special type of syntax known as <strong>closure</strong>.</li>
+<li>In Laravel route file is located <strong>insides routes/directory</strong>.</li>
+<li>In laravel, view files are written in <strong>blade</strong> syntax.</li>
+<li>In Laravel, a model file will be written as <strong>php</strong> code.</li>
+</ul>
+<h3 id="jQuery"><a href="#jQuery" class="headerlink" title="jQuery"></a>jQuery</h3><ul>
+<li>jQuery is a framework/library. <strong>true</strong></li>
+<li>jQuery is a client-side framework. <strong>true</strong></li>
+<li>In jQuery <strong>$</strong> is used to select an HTML element, attribute, class or an id.</li>
+<li>The jQuery declaration $(“p.test”).hide( ) will <strong>hide only the paragraphs that have a class = “test”</strong>.</li>
+</ul>
+<h3 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h3><ul>
+<li>Which of the following frameworks is not open-source? <strong>ASP.NET</strong></li>
+<li>Which of the following can be described as a technique that lets a developer query and manipulate data from a database using an object-oriented paradigm? <strong>ORM</strong></li>
+</ul>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> ISYS1126 </tag>
+            
+            <tag> PHP </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[JQuery-like DOM Selector]]></title>
+      <url>/2017/07/27/JQuery-like%20DOM%20Selector/</url>
+      <content type="html"><![CDATA[<p>I was watching a Play-by-Play video with Lea Verou on Pluralsight and she used to following function to create JQuery like syntax to select DOM nodes. I thought it was good enough to share.</p>
+<a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">$</span>(<span class="params">selector, container</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> (container || <span class="built_in">document</span>).querySelector(selector)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Now I can attach event listeners to an DOM node in the following format;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'button.foo'</span>).addEventListener(<span class="string">'click'</span>, () =&gt; &#123;</div><div class="line">  <span class="comment">//</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>Pretty cool.</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Javascript </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> javascript </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Passport.js Simple Example]]></title>
       <url>/2017/07/02/Passport-js-Simple-Example/</url>
       <content type="html"><![CDATA[<p>This is a simple example to demonstrate <a href="http://passportjs.org/" target="_blank" rel="external">Passport.js</a> using a basic local strategy.</p>
@@ -38,7 +279,7 @@
     
     <entry>
       <title><![CDATA[Regex Crossword Hexagonal Solutions]]></title>
-      <url>/2017/06/25/Regex-Crossword-Hexagonal-Solutions/</url>
+      <url>/2017/06/25/Regex%20Crossword/Regex-Crossword-Hexagonal-Solutions/</url>
       <content type="html"><![CDATA[<p><a href="https://www.regexcrossword.com" target="_blank" rel="external">Play Regex Crossword here</a></p>
 <a id="more"></a>
 <h2 id="Buzz-Buzz"><a href="#Buzz-Buzz" class="headerlink" title="Buzz Buzz"></a>Buzz Buzz</h2><p>Hive<br><img src="/images/regex/hex1.JPG" alt=""></p>
@@ -65,7 +306,7 @@
     
     <entry>
       <title><![CDATA[Regex Crossword Player Puzzle Solutions]]></title>
-      <url>/2017/06/25/Regex-Crossword-Player-Puzzle-Solutions/</url>
+      <url>/2017/06/25/Regex%20Crossword/Regex-Crossword-Player-Puzzle-Solutions/</url>
       <content type="html"><![CDATA[<p><a href="https://www.regexcrossword.com" target="_blank" rel="external">Play Regex Crossword here</a></p>
 <a id="more"></a>
 <h2 id="Binary-by-Player-6450"><a href="#Binary-by-Player-6450" class="headerlink" title="Binary (by Player #6450)"></a>Binary (by Player #6450)</h2><p><img src="/images/regex/player1.JPG" alt=""></p>
@@ -294,7 +535,7 @@
     
     <entry>
       <title><![CDATA[Regex Crossword Hamlet Solutions]]></title>
-      <url>/2017/06/21/Regex-Crossword-Hamlet-Solutions/</url>
+      <url>/2017/06/21/Regex%20Crossword/Regex-Crossword-Hamlet-Solutions/</url>
       <content type="html"><![CDATA[<p><a href="https://www.regexcrossword.com" target="_blank" rel="external">Play Regex Crossword here</a></p>
 <a id="more"></a>
 <h2 id="The-Ghost"><a href="#The-Ghost" class="headerlink" title="The Ghost"></a>The Ghost</h2><p>Revenge his most foul and unnatural murder<br><img src="/images/regex/hamlet1.JPG" alt=""></p>
@@ -322,7 +563,7 @@
     
     <entry>
       <title><![CDATA[Regex Crossword Volapük Solutions]]></title>
-      <url>/2017/06/21/Regex-Crossword-Volapuk-Solutions/</url>
+      <url>/2017/06/21/Regex%20Crossword/Regex-Crossword-Volapuk-Solutions/</url>
       <content type="html"><![CDATA[<p><a href="https://www.regexcrossword.com" target="_blank" rel="external">Play Regex Crossword here</a></p>
 <a id="more"></a>
 <h2 id="Bal"><a href="#Bal" class="headerlink" title="Bal"></a>Bal</h2><p><img src="/images/regex/vola1.JPG" alt=""></p>
@@ -349,7 +590,7 @@
     
     <entry>
       <title><![CDATA[Regex Crossword Cities Solutions]]></title>
-      <url>/2017/06/21/Regex-Crossword-Cities-Solutions/</url>
+      <url>/2017/06/21/Regex%20Crossword/Regex-Crossword-Cities-Solutions/</url>
       <content type="html"><![CDATA[<p><a href="https://www.regexcrossword.com" target="_blank" rel="external">Play Regex Crossword here</a></p>
 <a id="more"></a>
 <h2 id="Pisco-Sour"><a href="#Pisco-Sour" class="headerlink" title="Pisco Sour"></a>Pisco Sour</h2><p>Lima<br><img src="/images/regex/cities1.JPG" alt=""></p>
@@ -376,7 +617,7 @@
     
     <entry>
       <title><![CDATA[Regex Crossword Double Solutions]]></title>
-      <url>/2017/06/21/Regex-Crossword-Double-Solutions/</url>
+      <url>/2017/06/21/Regex%20Crossword/Regex-Crossword-Double-Solutions/</url>
       <content type="html"><![CDATA[<p><a href="https://www.regexcrossword.com" target="_blank" rel="external">Play Regex Crossword here</a></p>
 <a id="more"></a>
 <h2 id="Telekinesis"><a href="#Telekinesis" class="headerlink" title="Telekinesis"></a>Telekinesis</h2><p>ET<br><img src="/images/regex/double1.JPG" alt=""></p>
@@ -403,7 +644,7 @@
     
     <entry>
       <title><![CDATA[Regex Crossword Palindromeda Solutions]]></title>
-      <url>/2017/06/20/Regex-Crossword-Palindromeda-Solutions/</url>
+      <url>/2017/06/20/Regex%20Crossword/Regex-Crossword-Palindromeda-Solutions/</url>
       <content type="html"><![CDATA[<p><a href="https://www.regexcrossword.com" target="_blank" rel="external">Play Regex Crossword here</a></p>
 <a id="more"></a>
 <h2 id="Ten-o’clock"><a href="#Ten-o’clock" class="headerlink" title="Ten o’clock"></a>Ten o’clock</h2><p><img src="/images/regex/palin1.JPG" alt=""></p>
@@ -430,7 +671,7 @@
     
     <entry>
       <title><![CDATA[Regex Crossword Experienced Solutions]]></title>
-      <url>/2017/06/20/Regex-Crossword-Experienced-Solutions/</url>
+      <url>/2017/06/20/Regex%20Crossword/Regex-Crossword-Experienced-Solutions/</url>
       <content type="html"><![CDATA[<p><a href="https://www.regexcrossword.com" target="_blank" rel="external">Play Regex Crossword here</a></p>
 <a id="more"></a>
 <h2 id="Royal-Dinner"><a href="#Royal-Dinner" class="headerlink" title="Royal Dinner"></a>Royal Dinner</h2><p>Food fit for a king<br><img src="/images/regex/exp1.JPG" alt=""></p>
@@ -497,7 +738,7 @@
     
     <entry>
       <title><![CDATA[Regex Crossword Intermediate Solutions]]></title>
-      <url>/2017/06/19/Regex-Crossword-Intermediate-Solutions/</url>
+      <url>/2017/06/19/Regex%20Crossword/Regex-Crossword-Intermediate-Solutions/</url>
       <content type="html"><![CDATA[<p><a href="https://www.regexcrossword.com" target="_blank" rel="external">Play Regex Crossword here</a></p>
 <a id="more"></a>
 <h2 id="Always-remember"><a href="#Always-remember" class="headerlink" title="Always remember"></a>Always remember</h2><p>A towel<br><img src="/images/regex/int1.JPG" alt=""></p>
