@@ -3,8 +3,107 @@
   
     
     <entry>
-      <title><![CDATA[COSC1285 Algorithms Week 2]]></title>
-      <url>/2017/07/31/COSC1285/COSC1285-Algorithms-Week-2/</url>
+      <title><![CDATA[ISYS1126 Web Database Applications Week 2 Quiz]]></title>
+      <url>/2017/07/30/ISYS1126%20Web%20Database%20Apps/Quiz-2/</url>
+      <content type="html"><![CDATA[<p>Answers to entry level questions regarding PHP, patterns and Laravel.</p>
+<a id="more"></a>
+<h3 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h3><ul>
+<li>Which of the following PHP methods issues a warning upon encountering an error? <strong>include</strong></li>
+<li>Which of the following PHP methods terminates upon encountering an error? <strong>require</strong></li>
+<li>Which of the following promotes code reuse? <strong>trait</strong></li>
+<li>It is possible to instantiate a trait. <strong>false</strong></li>
+<li>In PHP, it is possible to create a static variable. <strong>true</strong></li>
+<li><strong>Scope resolution</strong> operator is used to call a static method via Class name in PHP.</li>
+<li>In PHP, the pseudo-variable <strong>$this</strong> is available when a method is called from within an object context.</li>
+<li>In PHP, the <strong>-&gt;</strong> operator is used to call class methods via object(s).</li>
+<li>In PHP a constructor is defined with the keyword <strong>__construct</strong></li>
+<li><strong>Protected</strong> in PHP makes sure that the class member is accessible via derived class.</li>
+<li><strong>Final</strong> keyword prevents the overriding of a method in the child class.</li>
+</ul>
+<h3 id="Patterns"><a href="#Patterns" class="headerlink" title="Patterns"></a>Patterns</h3><ul>
+<li>An <strong>interface</strong> is a supertype that specifies method headers without implementations.</li>
+<li>In <strong>singleton</strong> pattern, a class has one instance, It provides a global access point to it.</li>
+<li><strong>Strategy</strong> pattern makes a family algorithm and encapsulates each algorithm.</li>
+<li>Proxy pattern makes a family algorithm and encapsulates each algorithm. <strong>false</strong></li>
+</ul>
+<h3 id="Laravel"><a href="#Laravel" class="headerlink" title="Laravel"></a>Laravel</h3><ul>
+<li><strong>Composer</strong> is a dependency manager used by Laravel.</li>
+<li>Laravel uses <strong>MVC</strong> approach.</li>
+<li>Which of the following ORM is shipped with Laravel? <strong>Eloquent</strong></li>
+<li>In a laravel project, route file is called as <strong>web.php</strong>.</li>
+<li>In Laravel, routes use a special type of syntax known as <strong>closure</strong>.</li>
+<li>In Laravel route file is located <strong>insides routes/directory</strong>.</li>
+<li>In laravel, view files are written in <strong>blade</strong> syntax.</li>
+<li>In Laravel, a model file will be written as <strong>php</strong> code.</li>
+</ul>
+<h3 id="jQuery"><a href="#jQuery" class="headerlink" title="jQuery"></a>jQuery</h3><ul>
+<li>jQuery is a framework/library. <strong>true</strong></li>
+<li>jQuery is a client-side framework. <strong>true</strong></li>
+<li>In jQuery <strong>$</strong> is used to select an HTML element, attribute, class or an id.</li>
+<li>The jQuery declaration $(“p.test”).hide() will <strong>hide only the paragraphs that have a class = “test”</strong>.</li>
+</ul>
+<h3 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h3><ul>
+<li>Which of the following frameworks is not open-source? <strong>ASP.NET</strong></li>
+<li>Which of the following can be described as a technique that lets a developer query and manipulate data from a database using an object-oriented paradigm? <strong>ORM</strong></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> Uni Notes </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> ISYS1126 </tag>
+            
+            <tag> PHP </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[INTE2401 Cloud Security Week 2 Notes]]></title>
+      <url>/2017/07/28/INTE2401%20Cloud%20Security/Week-2/</url>
+      <content type="html"><![CDATA[<p>Implementation of a Spartan Scytale Cipher in javascript.</p>
+<a id="more"></a>
+<p>Ok, so this is a pretty straight forward cipher.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> string = process.argv[<span class="number">2</span>];</div><div class="line"></div><div class="line"><span class="keyword">const</span> run = <span class="function"><span class="params">columns</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">let</span> rows = <span class="built_in">Math</span>.ceil(string.length / columns);</div><div class="line"></div><div class="line">  process.stdout.write(<span class="string">`<span class="subst">$&#123;columns&#125;</span>: "`</span>);</div><div class="line"></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> col = <span class="number">0</span>; col &lt; columns; col++) &#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> row = <span class="number">0</span>; row &lt; rows; row++) &#123;</div><div class="line">      <span class="keyword">let</span> i = row * columns + col;</div><div class="line">      <span class="keyword">let</span> char = i &lt; string.length ? string[i] : <span class="string">"_"</span>;</div><div class="line">      process.stdout.write(char);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  process.stdout.write(<span class="string">'"\n'</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">`\nNumber of columns`</span>);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> columns = <span class="number">2</span>; columns &lt;= <span class="number">9</span>; columns++) run(columns);</div></pre></td></tr></table></figure>
+<p>Testing that output it looks correct.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># node encode "Cloud Security"</span></div><div class="line"></div><div class="line">Number of columns</div><div class="line">2: <span class="string">"CodScrtlu euiy"</span></div><div class="line">3: <span class="string">"CuSutlderyo ci_"</span></div><div class="line">4: <span class="string">"Cdctl uyoSr_uei_"</span></div><div class="line">5: <span class="string">"C rlSioetucydu_"</span></div><div class="line">6: <span class="string">"CStleyoc_uu_dr_ i_"</span></div><div class="line">7: <span class="string">"Celcouurdi tSy"</span></div><div class="line">8: <span class="string">"Ccluoruidt yS_e_"</span></div><div class="line">9: <span class="string">"Culroiutdy _S_e_c_"</span></div></pre></td></tr></table></figure>
+<p>Lets go with 7 columns, which is “Celcouurdi tSy”</p>
+<hr>
+<p>The decode process is the mirror, except we iterate over the columns rather than rows. Also if we assume that the cipher will be padded, then we don’t need to bother with ciphers where the characters divided by columns has a remainder.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> string = process.argv[<span class="number">2</span>];</div><div class="line"></div><div class="line"><span class="keyword">const</span> run = <span class="function"><span class="params">columns</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">let</span> rows = <span class="built_in">Math</span>.ceil(string.length / columns);</div><div class="line">  <span class="keyword">if</span> (rows !== string.length / columns) <span class="keyword">return</span>;</div><div class="line"></div><div class="line">  process.stdout.write(<span class="string">`<span class="subst">$&#123;columns&#125;</span>: `</span>);</div><div class="line"></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> row = <span class="number">0</span>; row &lt; rows; row++) &#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> col = <span class="number">0</span>; col &lt; columns; col++) &#123;</div><div class="line">      <span class="keyword">let</span> i = col * rows + row;</div><div class="line">      process.stdout.write(string[i]);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  process.stdout.write(<span class="string">"\n"</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">`\nNumber of columns`</span>);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> columns = <span class="number">2</span>; columns &lt;= <span class="number">9</span>; columns++) run(columns);</div></pre></td></tr></table></figure>
+<p>Looking at the output it appears to work.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># node decode "Celcouurdi tSy"</span></div><div class="line"></div><div class="line">Number of columns</div><div class="line">2: Credlic otuSuy</div><div class="line">7: Cloud Security</div></pre></td></tr></table></figure>
+<hr>
+<p>I did some more testing to verify my results against examples I found online, but this is limit of what I wanted to post.</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Uni Notes </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> INTE2401 </tag>
+            
+            <tag> Cloud </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[COSC1285 Algorithms Week 2 Notes]]></title>
+      <url>/2017/07/27/COSC1285%20Algorithms/Week-2/</url>
       <content type="html"><![CDATA[<p>Notes from lectures on Big O and Big Omega notation for grouping algorithms by orders of growth.</p>
 <a id="more"></a>
 <h3 id="Common-Equivalence-Classes"><a href="#Common-Equivalence-Classes" class="headerlink" title="Common Equivalence Classes"></a>Common Equivalence Classes</h3><p>Table of common usage is in textbook page 59 (pdf 87)</p>
@@ -123,6 +222,12 @@
 </table>
 ]]></content>
       
+        <categories>
+            
+            <category> Uni Notes </category>
+            
+        </categories>
+        
         
         <tags>
             
@@ -133,85 +238,25 @@
     </entry>
     
     <entry>
-      <title><![CDATA[COSC1285 Algorithms Week 1]]></title>
-      <url>/2017/07/31/COSC1285/COSC1285-Algorithms-Week-1/</url>
-      <content type="html"><![CDATA[<p>Some Javascript implementations of two algorithms from the <strong><em>Introduction to the Design and Analysis of Algorithms</em></strong> textbook.</p>
+      <title><![CDATA[INTE2401 Cloud Security Week 2 Quiz]]></title>
+      <url>/2017/07/27/INTE2401%20Cloud%20Security/Quiz-2/</url>
+      <content type="html"><![CDATA[<p>Answers to the multiple choice quiz given during the lecture.</p>
 <a id="more"></a>
-<h3 id="ALGORITHM-Euclid-m-n"><a href="#ALGORITHM-Euclid-m-n" class="headerlink" title="ALGORITHM Euclid(m, n)"></a>ALGORITHM Euclid(m, n)</h3><figure class="highlight smali"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//Computes gcd(m, n) by Euclid’s algorithm</div><div class="line">//Input: Two nonnegative,<span class="built_in"> not-both-zero </span>integers m<span class="built_in"> and </span>n</div><div class="line">//Output: Greatest common divisor of m<span class="built_in"> and </span>n</div><div class="line">while n = 0 do</div><div class="line">  r ← m mod n</div><div class="line">  m ← n</div><div class="line">  n ← r<span class="built_in"></span></div><div class="line">return m</div></pre></td></tr></table></figure>
-<p>In javascript this would look like this. We can make use of an implicit return and ternary function to have a one-liner.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> gcd = <span class="function">(<span class="params">m, n</span>) =&gt;</span> (n &gt; <span class="number">0</span> ? gcd(n, m % n) : m);</div><div class="line"><span class="built_in">console</span>.log(gcd(process.argv[<span class="number">2</span>], process.argv[<span class="number">3</span>]));</div></pre></td></tr></table></figure>
-<p>Testing the output it appears to work.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># node gcd.js 60 24</span></div><div class="line">12</div></pre></td></tr></table></figure></p>
-<hr>
-<h3 id="ALGORITHM-Sieve-n"><a href="#ALGORITHM-Sieve-n" class="headerlink" title="ALGORITHM Sieve(n)"></a>ALGORITHM Sieve(n)</h3><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">//Implements <span class="keyword">the</span> sieve <span class="keyword">of</span> Eratosthenes<span class="comment"></span></div><div class="line">//Input: A positive integer n &gt; 1<span class="comment"></span></div><div class="line">//Output: Array L of all prime numbers less than or equal to n</div><div class="line"><span class="number">1.1</span> What Is <span class="keyword">an</span> Algorithm? <span class="number">7</span></div><div class="line"><span class="keyword">for</span> p ← <span class="number">2</span> <span class="built_in">to</span> n <span class="built_in">do</span> A[p] ← p</div><div class="line"><span class="keyword">for</span> p ← <span class="number">2</span> <span class="built_in">to</span> √n <span class="built_in">do</span><span class="comment"> //see note before pseudocode</span></div><div class="line">  <span class="keyword">if</span> A[p] = <span class="number">0</span><span class="comment"> //p hasn’t been eliminated on previous passes</span></div><div class="line">    j ← p ∗ p</div><div class="line">    <span class="keyword">while</span> j ≤ n <span class="built_in">do</span></div><div class="line">      A[j] ← <span class="number">0</span><span class="comment"> //mark element as eliminated</span></div><div class="line">      j ← j + p<span class="comment"></span></div><div class="line">//copy the remaining elements of A to array L of the primes</div><div class="line">i ← <span class="number">0</span></div><div class="line"><span class="keyword">for</span> p ← <span class="number">2</span> <span class="built_in">to</span> n <span class="built_in">do</span></div><div class="line">  <span class="keyword">if</span> A[p] = <span class="number">0</span></div><div class="line">    L[i]← A[p]</div><div class="line">    i ← i + <span class="number">1</span></div><div class="line"><span class="literal">return</span> L</div></pre></td></tr></table></figure>
-<p>If I was trying to create a function to find primes, I would like to do this differently (say with a linked list), but I wanted to implement the example exactly. I also ignored the section at the end to copy the array to a new array L because it isn’t necessary.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> sieve = <span class="function"><span class="params">n</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">const</span> array = [];</div><div class="line">  <span class="keyword">const</span> limit = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.sqrt(n));</div><div class="line">  <span class="keyword">const</span> iterations = &#123;</div><div class="line">    <span class="attr">outerLoop</span>: <span class="number">0</span>,</div><div class="line">    <span class="attr">innerLoop</span>: <span class="number">0</span></div><div class="line">  &#125;;</div><div class="line">  <span class="keyword">let</span> j, p;</div><div class="line"></div><div class="line">  <span class="keyword">for</span> (p = <span class="number">2</span>; p &lt;= n; p++) array[p] = p;</div><div class="line"></div><div class="line">  <span class="keyword">for</span> (p = <span class="number">2</span>; p &lt;= limit; p++) &#123;</div><div class="line">    iterations.outerLoop++;</div><div class="line">    <span class="keyword">if</span> (array[p]) &#123;</div><div class="line">      j = p * p;</div><div class="line">      <span class="keyword">while</span> (j &lt;= n) &#123;</div><div class="line">        iterations.innerLoop++;</div><div class="line">        array[j] = <span class="number">0</span>;</div><div class="line">        j += p;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="built_in">console</span>.log(iterations);</div><div class="line">  <span class="keyword">return</span> array.filter(<span class="function"><span class="params">value</span> =&gt;</span> value);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(sieve(process.argv[<span class="number">2</span>]).join(<span class="string">", "</span>));</div></pre></td></tr></table></figure>
-<p>And it appears to work. Fantastic :)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># node sieve.js 100</span></div><div class="line">&#123; outerLoop: 9, innerLoop: 104 &#125;</div><div class="line">2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97</div></pre></td></tr></table></figure>
+<p>To be done…</p>
 ]]></content>
       
+        <categories>
+            
+            <category> Uni Notes </category>
+            
+        </categories>
+        
         
         <tags>
             
-            <tag> javascript </tag>
+            <tag> INTE2401 </tag>
             
-            <tag> COSC1285 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[ISYS1126 Web Database Applications Quiz 1]]></title>
-      <url>/2017/07/30/ISYS1126/ISYS1126-Quiz-1/</url>
-      <content type="html"><![CDATA[<p>&nbsp;</p>
-<a id="more"></a>
-<h3 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h3><ul>
-<li>Which of the following PHP methods issues a warning upon encountering an error? <strong>include</strong></li>
-<li>Which of the following PHP methods terminates upon encountering an error? <strong>require</strong></li>
-<li>Which of the following promotes code reuse? <strong>trait</strong></li>
-<li>It is possible to instantiate a trait. <strong>false</strong></li>
-<li>In PHP, it is possible to create a static variable. <strong>true</strong></li>
-<li><strong>Scope resolution</strong> operator is used to call a static method via Class name in PHP.</li>
-<li>In PHP, the pseudo-variable <strong>$this</strong> is available when a method is called from within an object context.</li>
-<li>In PHP, the <strong>-&gt;</strong> operator is used to call class methods via object(s).</li>
-<li>In PHP a constructor is defined with the keyword <strong>__construct</strong></li>
-<li><strong>Protected</strong> in PHP makes sure that the class member is accessible via derived class.</li>
-<li><strong>Final</strong> keyword prevents the overriding of a method in the child class.</li>
-</ul>
-<h3 id="Patterns"><a href="#Patterns" class="headerlink" title="Patterns"></a>Patterns</h3><ul>
-<li>An <strong>interface</strong> is a supertype that specifies method headers without implementations.</li>
-<li>In <strong>singleton</strong> pattern, a class has one instance, It provides a global access point to it.</li>
-<li><strong>Strategy</strong> pattern makes a family algorithm and encapsulates each algorithm.</li>
-<li>Proxy pattern makes a family algorithm and encapsulates each algorithm. <strong>false</strong></li>
-</ul>
-<h3 id="Laravel"><a href="#Laravel" class="headerlink" title="Laravel"></a>Laravel</h3><ul>
-<li><strong>Composer</strong> is a dependency manager used by Laravel.</li>
-<li>Laravel uses <strong>MVC</strong> approach.</li>
-<li>Which of the following ORM is shipped with Laravel? <strong>Eloquent</strong></li>
-<li>In a laravel project, route file is called as <strong>web.php</strong>.</li>
-<li>In Laravel, routes use a special type of syntax known as <strong>closure</strong>.</li>
-<li>In Laravel route file is located <strong>insides routes/directory</strong>.</li>
-<li>In laravel, view files are written in <strong>blade</strong> syntax.</li>
-<li>In Laravel, a model file will be written as <strong>php</strong> code.</li>
-</ul>
-<h3 id="jQuery"><a href="#jQuery" class="headerlink" title="jQuery"></a>jQuery</h3><ul>
-<li>jQuery is a framework/library. <strong>true</strong></li>
-<li>jQuery is a client-side framework. <strong>true</strong></li>
-<li>In jQuery <strong>$</strong> is used to select an HTML element, attribute, class or an id.</li>
-<li>The jQuery declaration $(“p.test”).hide( ) will <strong>hide only the paragraphs that have a class = “test”</strong>.</li>
-</ul>
-<h3 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h3><ul>
-<li>Which of the following frameworks is not open-source? <strong>ASP.NET</strong></li>
-<li>Which of the following can be described as a technique that lets a developer query and manipulate data from a database using an object-oriented paradigm? <strong>ORM</strong></li>
-</ul>
-]]></content>
-      
-        
-        <tags>
-            
-            <tag> ISYS1126 </tag>
-            
-            <tag> PHP </tag>
+            <tag> Cloud </tag>
             
         </tags>
         
@@ -238,6 +283,106 @@
         <tags>
             
             <tag> javascript </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[INTE2401 Cloud Security Week 1 Quiz]]></title>
+      <url>/2017/07/20/INTE2401%20Cloud%20Security/Quiz-1/</url>
+      <content type="html"><![CDATA[<p>Answers to the multiple choice quiz given during the lecture.</p>
+<a id="more"></a>
+<ul>
+<li><p>What is one benefit of a cloud computing environment?<br><strong>???</strong></p>
+</li>
+<li><p>What is an advantage of a multi-tenancy cloud environment over a single-tenancy environment?<br><strong>cost savings</strong></p>
+</li>
+<li><p>Which delivery model is an example of a cloud computing environment that provides users with a web based e-mail service?<br><strong>Software as a Service</strong></p>
+</li>
+<li><p>A cloud provider offers an environment for building applications that will run from the customer’s environment. Which cloud computing delivery model are they using?<br><strong>Platform as a Service</strong></p>
+</li>
+<li><p>Which delivery model is an example of a cloud computing environment that provides users access to virtual machines?<br><strong>Infrastructure as a Service</strong></p>
+</li>
+<li><p>How can a company leverage the Platform as Service cloud computing delivery model?<br><strong>???</strong></p>
+</li>
+<li><p>Which statement best describes the Software as a Service cloud delivery model?<br><strong>An application delivered to the client from the cloud which eliminates the need to install and run the application on the customer’s own computers and simplifying maintenance and support.</strong></p>
+</li>
+<li><p>A company has decided to leverage the web conferencing services provided by a cloud provider and to pay for those services as they are used. The cloud provider manages the infrastructure and any application upgrades. This is an example of what type of cloud delivery model?<br><strong>Software as a Service</strong></p>
+</li>
+<li><p>A company is considering a cloud environment to improve the operating efficiency for their data and applications. The company is part of an industry where strict security and data privacy issues are of the highest importance. Which type of cloud would be a good choice?<br><strong>private cloud</strong></p>
+</li>
+<li><p>An enterprise needs highly controlled storage and access to their databases as well as managing the infrastructure for web front ends and other applications. They have a large existing IT infrastructure and they are continually expanding the capabilities. Which cloud computing model will satisfy all their current needs and enable them to reduce costs?<br><strong>hybrid cloud</strong></p>
+</li>
+<li><p>Which statement is true about the security of the cloud computing environment?<br><strong>Access to critical data is better controlled in a private cloud environment.</strong></p>
+</li>
+<li><p>In cloud computing, which term is used to describe the nature of IT infrastructure and allows dynamic scaling depending on the demand for resources?<br><strong>elasticity</strong></p>
+</li>
+<li><p>What are the components of a cloud computing environment?<br><strong>client, application, platform, infrastructure, server</strong></p>
+</li>
+<li><p>How do users access Software as a Service cloud serivces?<br><strong>web browser</strong></p>
+</li>
+<li><p>A company currently experiences 7 to 10 percent utilization of its development and test computing resources. The company would like to consolidate to reduce the number of total resources in their data center and decrease energy costs. Which feature of cloud computing allows resource consolidation?<br><strong>???</strong></p>
+</li>
+<li><p>Why did virtualization boost the emergence of Cloud computing?<br><strong>Virtualization made it easier and cheaper to share resources between users.</strong></p>
+</li>
+<li><p>What is an important concern for the customer in multi-tenant environments?<br><strong>Security</strong></p>
+</li>
+<li><p>What is a hypervisor?<br><strong>A hypervisor is a virtual machine monitor.</strong></p>
+</li>
+<li><p>What are Type 1 hypervisors?<br><strong>Type 1 hypervisors run directly on system hardware.</strong></p>
+</li>
+<li><p>A virtual machine is composed of?<br><strong>Operating system and application.</strong></p>
+</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> Uni Notes </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> INTE2401 </tag>
+            
+            <tag> Cloud </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[COSC1285 Algorithms Week 1 Notes]]></title>
+      <url>/2017/07/20/COSC1285%20Algorithms/Week-1/</url>
+      <content type="html"><![CDATA[<p>Some Javascript implementations of two algorithms from the <strong><em>Introduction to the Design and Analysis of Algorithms</em></strong> textbook.</p>
+<a id="more"></a>
+<h3 id="ALGORITHM-Euclid-m-n"><a href="#ALGORITHM-Euclid-m-n" class="headerlink" title="ALGORITHM Euclid(m, n)"></a>ALGORITHM Euclid(m, n)</h3><figure class="highlight smali"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//Computes gcd(m, n) by Euclid’s algorithm</div><div class="line">//Input: Two nonnegative,<span class="built_in"> not-both-zero </span>integers m<span class="built_in"> and </span>n</div><div class="line">//Output: Greatest common divisor of m<span class="built_in"> and </span>n</div><div class="line">while n = 0 do</div><div class="line">  r ← m mod n</div><div class="line">  m ← n</div><div class="line">  n ← r<span class="built_in"></span></div><div class="line">return m</div></pre></td></tr></table></figure>
+<p>In javascript this would look like this. We can make use of an implicit return and ternary function to have a rather compact one-liner.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> gcd = <span class="function">(<span class="params">m, n</span>) =&gt;</span> (n &gt; <span class="number">0</span> ? gcd(n, m % n) : m);</div><div class="line"><span class="built_in">console</span>.log(gcd(process.argv[<span class="number">2</span>], process.argv[<span class="number">3</span>]));</div></pre></td></tr></table></figure>
+<p>Testing the output it appears to work.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># node gcd.js 60 24</span></div><div class="line">12</div></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="ALGORITHM-Sieve-n"><a href="#ALGORITHM-Sieve-n" class="headerlink" title="ALGORITHM Sieve(n)"></a>ALGORITHM Sieve(n)</h3><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">//Implements <span class="keyword">the</span> sieve <span class="keyword">of</span> Eratosthenes<span class="comment"></span></div><div class="line">//Input: A positive integer n &gt; 1<span class="comment"></span></div><div class="line">//Output: Array L of all prime numbers less than or equal to n</div><div class="line"><span class="number">1.1</span> What Is <span class="keyword">an</span> Algorithm? <span class="number">7</span></div><div class="line"><span class="keyword">for</span> p ← <span class="number">2</span> <span class="built_in">to</span> n <span class="built_in">do</span> A[p] ← p</div><div class="line"><span class="keyword">for</span> p ← <span class="number">2</span> <span class="built_in">to</span> √n <span class="built_in">do</span><span class="comment"> //see note before pseudocode</span></div><div class="line">  <span class="keyword">if</span> A[p] = <span class="number">0</span><span class="comment"> //p hasn’t been eliminated on previous passes</span></div><div class="line">    j ← p ∗ p</div><div class="line">    <span class="keyword">while</span> j ≤ n <span class="built_in">do</span></div><div class="line">      A[j] ← <span class="number">0</span><span class="comment"> //mark element as eliminated</span></div><div class="line">      j ← j + p<span class="comment"></span></div><div class="line">//copy the remaining elements of A to array L of the primes</div><div class="line">i ← <span class="number">0</span></div><div class="line"><span class="keyword">for</span> p ← <span class="number">2</span> <span class="built_in">to</span> n <span class="built_in">do</span></div><div class="line">  <span class="keyword">if</span> A[p] = <span class="number">0</span></div><div class="line">    L[i]← A[p]</div><div class="line">    i ← i + <span class="number">1</span></div><div class="line"><span class="literal">return</span> L</div></pre></td></tr></table></figure>
+<p>If I was trying to create a function to find primes, I would like to do this differently (say with a linked list), but I wanted to implement the example exactly. I also ignored the section at the end to copy the array to a new array L because it isn’t necessary.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> sieve = <span class="function"><span class="params">n</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">const</span> array = [];</div><div class="line">  <span class="keyword">const</span> limit = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.sqrt(n));</div><div class="line">  <span class="keyword">const</span> iterations = &#123;</div><div class="line">    <span class="attr">outerLoop</span>: <span class="number">0</span>,</div><div class="line">    <span class="attr">innerLoop</span>: <span class="number">0</span></div><div class="line">  &#125;;</div><div class="line">  <span class="keyword">let</span> j, p;</div><div class="line"></div><div class="line">  <span class="keyword">for</span> (p = <span class="number">2</span>; p &lt;= n; p++) array[p] = p;</div><div class="line"></div><div class="line">  <span class="keyword">for</span> (p = <span class="number">2</span>; p &lt;= limit; p++) &#123;</div><div class="line">    iterations.outerLoop++;</div><div class="line">    <span class="keyword">if</span> (array[p]) &#123;</div><div class="line">      j = p * p;</div><div class="line">      <span class="keyword">while</span> (j &lt;= n) &#123;</div><div class="line">        iterations.innerLoop++;</div><div class="line">        array[j] = <span class="number">0</span>;</div><div class="line">        j += p;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="built_in">console</span>.log(iterations);</div><div class="line">  <span class="keyword">return</span> array.filter(<span class="function"><span class="params">value</span> =&gt;</span> value);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(sieve(process.argv[<span class="number">2</span>]).join(<span class="string">", "</span>));</div></pre></td></tr></table></figure>
+<p>And it appears to work. Fantastic :)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># node sieve.js 100</span></div><div class="line">&#123; outerLoop: 9, innerLoop: 104 &#125;</div><div class="line">2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97</div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> Uni Notes </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> javascript </tag>
+            
+            <tag> COSC1285 </tag>
             
         </tags>
         
