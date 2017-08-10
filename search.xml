@@ -3,6 +3,186 @@
   
     
     <entry>
+      <title><![CDATA[How to play a sound after a command completes in Windows]]></title>
+      <url>/2017/08/08/How-to-play-a-sound-after-a-command-completes-in-Windows/</url>
+      <content type="html"><![CDATA[<p>A simple way to play a sound after a long running command completes in Windows.</p>
+<a id="more"></a>
+<p>I have been reading guides on playing a terminal bell in CMD. Supposedly “echo ^G” works, but I haven’t any success. Which was fine because the bell sound wasn’t exactly the sound I wanted anyway. Here is the simplest solution. First browse to %windir%\Media and find a sound you like. I choose %windir%\Media\tada.wav</p>
+<p>Next create a batch file like below and store it somewhere such that it is accessibly by the PATH environment variable. In my case, I have a C:\bin folder which I have saved below as ding.bat (get it… dingbat.. hilarious I know).</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">powershell</span> <span class="selector-tag">-c</span> (<span class="selector-tag">New-Object</span> <span class="selector-tag">Media</span><span class="selector-class">.SoundPlayer</span> "%<span class="selector-tag">windir</span>%\<span class="selector-tag">Media</span>\<span class="selector-tag">tada</span><span class="selector-class">.wav</span>")<span class="selector-class">.PlaySync</span>();</div></pre></td></tr></table></figure>
+<p>Why Powershell? Because I want something that plays an audio file without opening a new window. And some of the guides recommend installing mplay32 which I think is unnecessary if Powershell does what I need. Commandline VLC (cvlc) would also be a good alternative if you don’t have Powershell installed.</p>
+<p>Ok, now test it by Win+R and running “ding”. If that works, you can use such that;</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">update <span class="meta">&amp;&amp; ding</span></div></pre></td></tr></table></figure>
+<p>Now you have a simple piece of code that you can add to a large process chain. For example, I have a batch file for downloading youtube videos.</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">youtube-dl %* -o %USERPROFILE%<span class="string">"\Desktop\%%(title)s.%%(ext)s"</span> &amp;&amp; ding &amp;&amp; <span class="keyword">exit</span></div></pre></td></tr></table></figure>
+<p>To use, hit Win+R and type “dl <a href="https://www.youtube.com/watch?v=9bZkp7q19f0" target="_blank" rel="external">https://www.youtube.com/watch?v=9bZkp7q19f0</a>“. Easy.</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> Windows </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[COSC1285 Algorithms Week 2 Quiz]]></title>
+      <url>/2017/08/06/COSC1285%20Algorithms/Quiz-2/</url>
+      <content type="html"><![CDATA[<p>Answers to the online Algorithms and Analysis quiz.</p>
+<a id="more"></a>
+<p>What is the average case, and why is it considered difficult to analyse?</p>
+<p><strong>Average case is the average across all possible inputs.  Generally, the number of possible inputs is extremely large, making it difficult to consider all possibilities.</strong></p>
+<hr>
+<p>What is the input size and basic operation of the following algorithm?<br><figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Input: <span class="keyword">Array</span> A[<span class="number">0</span>,<span class="number">1</span>,...,n-<span class="number">1</span>] (<span class="keyword">array</span> <span class="keyword">of</span> size n)</div><div class="line">Output: s = A[<span class="number">0</span>] * A[<span class="number">1</span>] * ... A[n-<span class="number">1</span>] (multiplication <span class="keyword">of</span> <span class="keyword">all</span> the elements)</div><div class="line"><span class="number">1</span>: Set s = <span class="number">1</span></div><div class="line"><span class="number">2</span>: <span class="keyword">for</span> i = <span class="number">0</span> to n-<span class="number">1</span> <span class="keyword">do</span></div><div class="line"><span class="number">3</span>:    s = s * A[i]</div><div class="line"><span class="number">4</span>: <span class="keyword">end</span> <span class="keyword">for</span></div><div class="line"><span class="number">5</span>: <span class="keyword">return</span> s</div></pre></td></tr></table></figure></p>
+<p><strong>Answer: n and multiplication</strong></p>
+<hr>
+<p>Consider the following pseudo code for an algorithm.<br>What is C(n), the number of times the basic operation of addition is computed in the above algorithm?<br><figure class="highlight cal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i = <span class="number">1</span> <span class="keyword">to</span> n <span class="keyword">do</span></div><div class="line">  <span class="keyword">for</span> j = <span class="number">1</span> <span class="keyword">to</span> n <span class="keyword">do</span></div><div class="line">    X = X + <span class="number">1</span></div><div class="line">  <span class="keyword">end</span> <span class="keyword">for</span></div><div class="line"><span class="keyword">end</span> <span class="keyword">for</span></div></pre></td></tr></table></figure></p>
+<p><strong>Answer</strong> <img src="/images/cosc1285/sum2_1.gif" alt=""></p>
+<hr>
+<p>Given $t(n) = 3n^3$, which of the following functions g(n) satisfy $t(n) ∈ Θ(g(n))$?  Select one or more answers.</p>
+<p><strong>Answer: $g(n) = n^3$</strong></p>
+<hr>
+<p>Given $t(n) = 3n^3$, which of the following functions g(n) satisfy $t(n) ∈ Ω(g(n))$?  Select one or more answers.</p>
+<p><strong>Answer</strong></p>
+<ul>
+<li>$g(n) = log(n)$</li>
+<li>$g(n) = n$</li>
+<li>$g(n) = n^2$</li>
+<li>$g(n) = n^3$</li>
+<li>$g(n) = e^n$</li>
+<li>$g(n) = n!$</li>
+</ul>
+<hr>
+<p>Which of the following functions are considered to be in $Ω(log(n))$?  i.e., for each function t(n), determine if $t(n) ∈ Ω(log(n))$.  Select one or more answers.</p>
+<p><strong>Answer</strong></p>
+<ul>
+<li>$t(n) = log(n)$</li>
+<li>$t(n) = n$</li>
+<li>$t(n) = n^2$</li>
+<li>$t(n) = n^3$</li>
+<li>$t(n) = e^n$</li>
+<li>$t(n) = n!$</li>
+</ul>
+<hr>
+<p>Which of the following functions are considered to be in $Θ(n^2)$?  i.e., for each function t(n), determine if $t(n) ∈ Θ(n^2)$.  Select one or more answers.</p>
+<p><strong>Answer: $n^2$</strong></p>
+<hr>
+<p>For the following algorithm, in the worst case, how many times is the basic operation of equality (==) executed on an array of size n?<br><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Input: array A[<span class="number">0</span>,<span class="number">1</span>,...,n<span class="number">-1</span>] (<span class="keyword">of</span> size n), search <span class="keyword">key</span> K</div><div class="line">Output: a list <span class="keyword">of</span> indices <span class="keyword">of</span> A whose corresponding elements match <span class="keyword">key</span> K.</div><div class="line">        <span class="keyword">If</span> no matches, empty <span class="keyword">set</span> <span class="keyword">is</span> returned.</div><div class="line"><span class="number">1</span>: i = <span class="number">0</span></div><div class="line"><span class="number">2</span>: found = list()</div><div class="line"><span class="number">3</span>: <span class="keyword">while</span> i &lt; n <span class="keyword">do</span></div><div class="line"><span class="number">4</span>:    <span class="keyword">if</span> (A[i] == K) <span class="keyword">then</span></div><div class="line"><span class="number">5</span>:       found.append(i)</div><div class="line"><span class="number">6</span>:    <span class="keyword">end</span> <span class="keyword">if</span></div><div class="line"><span class="number">7</span>:    i += <span class="number">1</span></div><div class="line"><span class="number">4</span>: <span class="keyword">end</span> <span class="keyword">while</span></div><div class="line"><span class="number">5</span>: <span class="keyword">return</span> found</div></pre></td></tr></table></figure></p>
+<p><strong>Answer: n</strong></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Uni Notes </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> COSC1285 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[INTE2401 Cloud Security Week 3 Quiz]]></title>
+      <url>/2017/08/03/INTE2401%20Cloud%20Security/Quiz-3/</url>
+      <content type="html"><![CDATA[<p>Answers to the multiple choice quiz given during the lecture.</p>
+<a id="more"></a>
+<p>The Caesar cipher is a <strong>shift</strong> cipher that has a key of 3.</p>
+<p>The key of the Caesar cipher is <strong>3</strong>.</p>
+<p>The key size of the Shift cipher is</p>
+<p>The inverse of 3 mod 26 is</p>
+<p>If the encryption algorithm of a Shift cipher is C=5P+6, the decryption algorithm of the Shift cipher is</p>
+<p>Comparing the Shift cipher with the Hill cipher,</p>
+<p>The key size of the Hill cipher is</p>
+<p>The key matrix of the Hill cipher can be</p>
+<p>Vigenere cipher is</p>
+<p>Which of the following ciphers is the most secure?</p>
+<p>A ciphertext has been generated with an affine cipher. The most frequent letter of the ciphertext is “F”, and the second most frequent letter of the ciphertext is “C”. Break this code.</p>
+<p>Suppose that the plaintext “hillcipher” is encrypted using a Hill Cipher to vield the ciphertext HCRZSSXNSP. Find the key matrix of the Hill Cipher.</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Uni Notes </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> INTE2401 </tag>
+            
+            <tag> Cloud </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Week 3]]></title>
+      <url>/2017/08/03/INTE2401%20Cloud%20Security/Week-3/</url>
+      <content type="html"></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[COSC1285 Algorithms Week 3 Notes]]></title>
+      <url>/2017/08/02/COSC1285%20Algorithms/Week-3/</url>
+      <content type="html"><![CDATA[<p>Notes from lecture on algorithmic orders of growth, and javascript implementations of selection sort and bubble sort.</p>
+<a id="more"></a>
+<h3 id="Rule-of-thumb-for-comparing-orders-of-growth"><a href="#Rule-of-thumb-for-comparing-orders-of-growth" class="headerlink" title="Rule of thumb for comparing orders of growth."></a>Rule of thumb for comparing orders of growth.</h3><p>$$ O(n^n) &gt; O(n!) &gt; O(a^n) &gt; O(n^a) &gt; O(\log{(n)}) &gt; O(1)$$</p>
+<p><em>Note</em>: Don’t forget that $\log_a{b}^c= c \cdot \log_a{b}$ so be careful about assuming two log functions have the same order of growth.</p>
+<!-- Tutorial example solution (ordered from lowest to highest)
+- $(n-2)!$
+- $5\log(n+100)^10$
+- $2^{2n}$
+- $0.0001n^4 + 3n^3 + 1$
+- $\log_e^2{n}$
+- $\sqrt[3]{n}$
+- $3^n$ -->
+<hr>
+<h3 id="Selection-Sort"><a href="#Selection-Sort" class="headerlink" title="Selection Sort"></a>Selection Sort</h3><p>This algorithm is to iterate over an array, finding the smallest value along the way, then at the end swap it with the first position. Repeat for the second position, etc.</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">ALGORITHM SelectionSort(A[0..n − 1])</div><div class="line">//Sorts a given<span class="built_in"> array </span>by selection sort</div><div class="line">//Input: An<span class="built_in"> array </span>A[0..n − 1] of orderable elements</div><div class="line">//Output: Array A[0..n − 1] sorted in nondecreasing order</div><div class="line">for i ← 0 to n − 2 do</div><div class="line">  min ← i</div><div class="line">  for j ← i + 1 to n − 1 do</div><div class="line">   <span class="built_in"> if </span>A[j] &lt; A[min] min ← j</div><div class="line">  swap A[i]<span class="built_in"> and </span>A[min]</div></pre></td></tr></table></figure>
+<p>I wanted to make sure I matched the textbook output;</p>
+<p><img src="/images/cosc1285/table3_1.jpg" alt=""></p>
+<p>This was my implementation.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> array = [<span class="number">89</span>, <span class="number">45</span>, <span class="number">68</span>, <span class="number">90</span>, <span class="number">29</span>, <span class="number">34</span>, <span class="number">17</span>];</div><div class="line"></div><div class="line"><span class="comment">// Format table like in book.</span></div><div class="line"><span class="keyword">const</span> print = <span class="function"><span class="params">done</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</div><div class="line">    <span class="keyword">let</span> spacer = done === i ? <span class="string">" | "</span> : <span class="string">"   "</span>;</div><div class="line">    process.stdout.write(<span class="string">`<span class="subst">$&#123;spacer&#125;</span><span class="subst">$&#123;array[i]&#125;</span>`</span>);</div><div class="line">  &#125;</div><div class="line">  process.stdout.write(<span class="string">`\n`</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// Print initial row</span></div><div class="line">print(<span class="number">0</span>);</div><div class="line"></div><div class="line"><span class="comment">// Selection sort</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length - <span class="number">1</span>; i++) &#123;</div><div class="line">  <span class="keyword">let</span> min = i;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; array.length; j++) &#123;</div><div class="line">    <span class="keyword">if</span> (array[j] &lt; array[min]) min = j;</div><div class="line">  &#125;</div><div class="line">  [array[i], array[min]] = [array[min], array[i]];</div><div class="line">  print(i + <span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Running that, we get the correct output.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ node selection_sort</div><div class="line">| 89   45   68   90   29   34   17</div><div class="line">  17 | 45   68   90   29   34   89</div><div class="line">  17   29 | 68   90   45   34   89</div><div class="line">  17   29   34 | 90   45   68   89</div><div class="line">  17   29   34   45 | 90   68   89</div><div class="line">  17   29   34   45   68 | 90   89</div><div class="line">  17   29   34   45   68   89 | 90</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="Bubble-Sort"><a href="#Bubble-Sort" class="headerlink" title="Bubble Sort"></a>Bubble Sort</h3><p>This algorith starts with the first element and iterate over the array, trading up whenever we find a greater value.</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">ALGORITHM BubbleSort(A[0..n − 1])</div><div class="line">//Sorts a given<span class="built_in"> array </span>by bubble sort</div><div class="line">//Input: An<span class="built_in"> array </span>A[0..n − 1] of orderable elements</div><div class="line">//Output: Array A[0..n − 1] sorted in nondecreasing order</div><div class="line">for i ← 0 to n − 2 do</div><div class="line">  for j ← 0 to n − 2 − i do</div><div class="line">   <span class="built_in"> if </span>A[j + 1] &lt; A[j] swap A[j]<span class="built_in"> and </span>A[j + 1]</div></pre></td></tr></table></figure>
+<p>I didn’t quite match the textbook output because I wanted each iteration on its own line.</p>
+<p><img src="/images/cosc1285/table3_2.jpg" alt=""></p>
+<p>This is my implementation.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> array = [<span class="number">89</span>, <span class="number">45</span>, <span class="number">68</span>, <span class="number">90</span>, <span class="number">29</span>, <span class="number">34</span>, <span class="number">17</span>];</div><div class="line"></div><div class="line"><span class="comment">// Format table like in book.</span></div><div class="line"><span class="keyword">const</span> print = <span class="function">(<span class="params">comparison, done</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</div><div class="line">    <span class="keyword">let</span> spacer = <span class="string">"   "</span>;</div><div class="line">    <span class="keyword">if</span> (done === i) spacer = <span class="string">" | "</span>;</div><div class="line">    <span class="keyword">if</span> (comparison === i) spacer = <span class="string">" ? "</span>;</div><div class="line">    process.stdout.write(<span class="string">`<span class="subst">$&#123;spacer&#125;</span><span class="subst">$&#123;array[i]&#125;</span>`</span>);</div><div class="line">  &#125;</div><div class="line">  process.stdout.write(<span class="string">`\n`</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// Bubble sort</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length - <span class="number">1</span>; i++) &#123;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; array.length - <span class="number">1</span> - i; j++) &#123;</div><div class="line">    print(j + <span class="number">1</span>, array.length - i);</div><div class="line">    <span class="keyword">if</span> (array[j + <span class="number">1</span>] &lt; array[j]) &#123;</div><div class="line">      [array[j], array[j + <span class="number">1</span>]] = [array[j + <span class="number">1</span>], array[j]];</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Print final row</span></div><div class="line">print(<span class="literal">null</span>, <span class="number">0</span>);</div></pre></td></tr></table></figure>
+<p>Running that, we get the output I expect.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">$ node bubble_sort</div><div class="line">  89 ? 45   68   90   29   34   17</div><div class="line">  45   89 ? 68   90   29   34   17</div><div class="line">  45   68   89 ? 90   29   34   17</div><div class="line">  45   68   89   90 ? 29   34   17</div><div class="line">  45   68   89   29   90 ? 34   17</div><div class="line">  45   68   89   29   34   90 ? 17</div><div class="line">  45 ? 68   89   29   34   17 | 90</div><div class="line">  45   68 ? 89   29   34   17 | 90</div><div class="line">  45   68   89 ? 29   34   17 | 90</div><div class="line">  45   68   29   89 ? 34   17 | 90</div><div class="line">  45   68   29   34   89 ? 17 | 90</div><div class="line">  45 ? 68   29   34   17 | 89   90</div><div class="line">  45   68 ? 29   34   17 | 89   90</div><div class="line">  45   29   68 ? 34   17 | 89   90</div><div class="line">  45   29   34   68 ? 17 | 89   90</div><div class="line">  45 ? 29   34   17 | 68   89   90</div><div class="line">  29   45 ? 34   17 | 68   89   90</div><div class="line">  29   34   45 ? 17 | 68   89   90</div><div class="line">  29 ? 34   17 | 45   68   89   90</div><div class="line">  29   34 ? 17 | 45   68   89   90</div><div class="line">  29 ? 17 | 34   45   68   89   90</div><div class="line">| 17   29   34   45   68   89   90</div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> Uni Notes </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> COSC1285 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[ISYS1126 Web Database Applications Week 2 Quiz]]></title>
       <url>/2017/07/30/ISYS1126%20Web%20Database%20Apps/Quiz-2/</url>
       <content type="html"><![CDATA[<p>Answers to entry level questions regarding PHP, patterns and Laravel.</p>
@@ -60,6 +240,94 @@
             <tag> ISYS1126 </tag>
             
             <tag> PHP </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[COSC1285 Algorithms Week 1 Quiz]]></title>
+      <url>/2017/07/30/COSC1285%20Algorithms/Quiz-1/</url>
+      <content type="html"><![CDATA[<p>Answers to the online Algorithms and Analysis quiz.</p>
+<a id="more"></a>
+<p>Consider the following undirected graph.<br><img src="/images/cosc1285/graph1_1.jpg" alt=""><br>The adjacency list representation of the above graph is partially filled in.  </p>
+<ul>
+<li>A -&gt; B, C, D</li>
+<li>B -&gt; A</li>
+<li>C -&gt; ?</li>
+<li>D -&gt; A</li>
+</ul>
+<p>What is the adjacency list of vertex C?  If A, B, C, D are neighbours of C, then specify your answer as “A,B,C,D” in the answers.  Note, the list should be in ascending order.<br><strong>Answer: A, C</strong></p>
+<hr>
+<p>Consider the following directed graph.<br><img src="/images/cosc1285/graph1_2.jpg" alt=""><br>The adjacency matrix representation of the above graph is partially filled in.  What are the values for the 4 missing values?</p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>0</td>
+<td><strong>v</strong></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>B</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>C</td>
+<td><strong>x</strong></td>
+<td>0</td>
+<td><strong>y</strong></td>
+<td>0</td>
+</tr>
+<tr>
+<td>D</td>
+<td>1</td>
+<td>0</td>
+<td><strong>z</strong></td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Answer: v = 0, x = 0, y = 1, z = 0</strong></p>
+<hr>
+<p>Which of the following is not a dictionary?   The answers are specified as a collection of (key,value) pairs.<br><strong>Answer: [(a, 1), (c, 3), (e, 1), (a, 2), (b, 3)]</strong></p>
+<hr>
+<p>Consider the queue of [a, b, a, c, d, e], where the leftmost element is the front of the queue, i.e., ‘a’, and the rightmost element is the back of the queue, i.e., ‘e’.  After the following operations, dequeue, enqueue ‘f’, dequeue was executed on this queue, what is the updated queue?<br><strong>Answer: [a, c, d, e, f]</strong></p>
+<hr>
+<p>Consider the stack of [a, b, a, c, d, e], where the leftmost element is the top of the stack, i.e., ‘a’ and the rightmost element is the bottom of the stack, i.e., ‘e’.  After the following operations, pop, push f, pop was executed on this stack, what is the updated stack?<br><strong>Answer: [b, a, c, d, e]</strong></p>
+<hr>
+<p>The main difference between (normal) queues and priority queues is that the latter considers priority.  When dequeuing, priority queues removes the element with the  ?  priority, while for normal queues, they remove the element at the front of the queue.  Select what ? should be.<br><strong>Answer: highest</strong></p>
+<hr>
+<p>Which of the following collections are sequences?  If ordering is important in the collection, it will be labelled “ordered” after it, otherwise if ordering is not important, it will be labelled “unordered”.  There can be 1 or more answers - you need to select all the correct answers.</p>
+<ul>
+<li><strong>[car, bar, rar, par] (ordered)</strong></li>
+<li><strong>[a, c, b, d] (ordered)</strong></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> Uni Notes </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> COSC1285 </tag>
             
         </tags>
         
@@ -242,7 +510,18 @@
       <url>/2017/07/27/INTE2401%20Cloud%20Security/Quiz-2/</url>
       <content type="html"><![CDATA[<p>Answers to the multiple choice quiz given during the lecture.</p>
 <a id="more"></a>
-<p>To be done…</p>
+<p>Which of the following involves prevention of unauthorized withholding of information? <strong>Confidentiality</strong></p>
+<p>Which of the following is an active attack? <strong>Modification and Masquerade</strong></p>
+<p>Authentication is needed to prevent? <strong>Impersonation</strong></p>
+<p>Protecting personal data involves which of the following? <strong>Privacy</strong></p>
+<p>Example of malicious insider includes <strong>Data administrator</strong>.</p>
+<p>Firewall is needed to ensure security at <strong>Network level</strong>.</p>
+<p>Directory federation is needed to ensure security at <strong>Operating system and application level</strong>.</p>
+<p>In the model of conventional encryption, the encryption key is known to <strong>both sender and receiver</strong>.</p>
+<p>In classical ciphers, the order of the letters in a message is rearranged by <strong>transposition ciphers</strong>.</p>
+<p>In the transposition cipher with keyword, the permutation determined by the keyword “model” is <strong>45123</strong>.</p>
+<p>Suppose that an attacker has eavesdropped the ciphertext produced by the Spartan Scytale as follows: “ceyoclcirooustuuriardimnsstpte”. Without knowing the key, can you decrypt the ciphertext?<br>  <strong>cloud security is important course</strong></p>
+<p>In a transposition cipher with key words, suppose the key word is stock. Can you encrypt the following plaintext with this cipher? “melbourne is fine today”<br>  <strong>bolmeeinurneisfaydto</strong></p>
 ]]></content>
       
         <categories>
@@ -293,48 +572,51 @@
       <url>/2017/07/20/INTE2401%20Cloud%20Security/Quiz-1/</url>
       <content type="html"><![CDATA[<p>Answers to the multiple choice quiz given during the lecture.</p>
 <a id="more"></a>
-<ul>
-<li><p>What is one benefit of a cloud computing environment?<br><strong>???</strong></p>
-</li>
-<li><p>What is an advantage of a multi-tenancy cloud environment over a single-tenancy environment?<br><strong>cost savings</strong></p>
-</li>
-<li><p>Which delivery model is an example of a cloud computing environment that provides users with a web based e-mail service?<br><strong>Software as a Service</strong></p>
-</li>
-<li><p>A cloud provider offers an environment for building applications that will run from the customer’s environment. Which cloud computing delivery model are they using?<br><strong>Platform as a Service</strong></p>
-</li>
-<li><p>Which delivery model is an example of a cloud computing environment that provides users access to virtual machines?<br><strong>Infrastructure as a Service</strong></p>
-</li>
-<li><p>How can a company leverage the Platform as Service cloud computing delivery model?<br><strong>???</strong></p>
-</li>
-<li><p>Which statement best describes the Software as a Service cloud delivery model?<br><strong>An application delivered to the client from the cloud which eliminates the need to install and run the application on the customer’s own computers and simplifying maintenance and support.</strong></p>
-</li>
-<li><p>A company has decided to leverage the web conferencing services provided by a cloud provider and to pay for those services as they are used. The cloud provider manages the infrastructure and any application upgrades. This is an example of what type of cloud delivery model?<br><strong>Software as a Service</strong></p>
-</li>
-<li><p>A company is considering a cloud environment to improve the operating efficiency for their data and applications. The company is part of an industry where strict security and data privacy issues are of the highest importance. Which type of cloud would be a good choice?<br><strong>private cloud</strong></p>
-</li>
-<li><p>An enterprise needs highly controlled storage and access to their databases as well as managing the infrastructure for web front ends and other applications. They have a large existing IT infrastructure and they are continually expanding the capabilities. Which cloud computing model will satisfy all their current needs and enable them to reduce costs?<br><strong>hybrid cloud</strong></p>
-</li>
-<li><p>Which statement is true about the security of the cloud computing environment?<br><strong>Access to critical data is better controlled in a private cloud environment.</strong></p>
-</li>
-<li><p>In cloud computing, which term is used to describe the nature of IT infrastructure and allows dynamic scaling depending on the demand for resources?<br><strong>elasticity</strong></p>
-</li>
-<li><p>What are the components of a cloud computing environment?<br><strong>client, application, platform, infrastructure, server</strong></p>
-</li>
-<li><p>How do users access Software as a Service cloud serivces?<br><strong>web browser</strong></p>
-</li>
-<li><p>A company currently experiences 7 to 10 percent utilization of its development and test computing resources. The company would like to consolidate to reduce the number of total resources in their data center and decrease energy costs. Which feature of cloud computing allows resource consolidation?<br><strong>???</strong></p>
-</li>
-<li><p>Why did virtualization boost the emergence of Cloud computing?<br><strong>Virtualization made it easier and cheaper to share resources between users.</strong></p>
-</li>
-<li><p>What is an important concern for the customer in multi-tenant environments?<br><strong>Security</strong></p>
-</li>
-<li><p>What is a hypervisor?<br><strong>A hypervisor is a virtual machine monitor.</strong></p>
-</li>
-<li><p>What are Type 1 hypervisors?<br><strong>Type 1 hypervisors run directly on system hardware.</strong></p>
-</li>
-<li><p>A virtual machine is composed of?<br><strong>Operating system and application.</strong></p>
-</li>
-</ul>
+<!-- What is one benefit of a cloud computing environment?
+  **???**
+
+--- -->
+<p>What is an advantage of a multi-tenancy cloud environment over a single-tenancy environment?<br>  <strong>cost savings</strong></p>
+<hr>
+<p>Which delivery model is an example of a cloud computing environment that provides users with a web based e-mail service?<br>  <strong>Software as a Service</strong></p>
+<hr>
+<p>A cloud provider offers an environment for building applications that will run from the customer’s environment. Which cloud computing delivery model are they using?<br>  <strong>Platform as a Service</strong></p>
+<hr>
+<p>Which delivery model is an example of a cloud computing environment that provides users access to virtual machines?<br>  <strong>Infrastructure as a Service</strong></p>
+<hr>
+<!-- How can a company leverage the Platform as Service cloud computing delivery model?
+  **???**
+
+--- -->
+<p>Which statement best describes the Software as a Service cloud delivery model?<br>  <strong>An application delivered to the client from the cloud which eliminates the need to install and run the application on the customer’s own computers and simplifying maintenance and support.</strong></p>
+<hr>
+<p>A company has decided to leverage the web conferencing services provided by a cloud provider and to pay for those services as they are used. The cloud provider manages the infrastructure and any application upgrades. This is an example of what type of cloud delivery model?<br>  <strong>Software as a Service</strong></p>
+<hr>
+<p>A company is considering a cloud environment to improve the operating efficiency for their data and applications. The company is part of an industry where strict security and data privacy issues are of the highest importance. Which type of cloud would be a good choice?<br>  <strong>private cloud</strong></p>
+<hr>
+<p>An enterprise needs highly controlled storage and access to their databases as well as managing the infrastructure for web front ends and other applications. They have a large existing IT infrastructure and they are continually expanding the capabilities. Which cloud computing model will satisfy all their current needs and enable them to reduce costs?<br>  <strong>hybrid cloud</strong></p>
+<hr>
+<p>Which statement is true about the security of the cloud computing environment?<br>  <strong>Access to critical data is better controlled in a private cloud environment.</strong></p>
+<hr>
+<p>In cloud computing, which term is used to describe the nature of IT infrastructure and allows dynamic scaling depending on the demand for resources?<br>  <strong>elasticity</strong></p>
+<hr>
+<p>What are the components of a cloud computing environment?<br>  <strong>client, application, platform, infrastructure, server</strong></p>
+<hr>
+<p>How do users access Software as a Service cloud serivces?<br>  <strong>web browser</strong></p>
+<hr>
+<!-- A company currently experiences 7 to 10 percent utilization of its development and test computing resources. The company would like to consolidate to reduce the number of total resources in their data center and decrease energy costs. Which feature of cloud computing allows resource consolidation?
+  **???**
+
+--- -->
+<p>Why did virtualization boost the emergence of Cloud computing?<br>  <strong>Virtualization made it easier and cheaper to share resources between users.</strong></p>
+<hr>
+<p>What is an important concern for the customer in multi-tenant environments?<br>  <strong>Security</strong></p>
+<hr>
+<p>What is a hypervisor?<br>  <strong>A hypervisor is a virtual machine monitor.</strong></p>
+<hr>
+<p>What are Type 1 hypervisors?<br>  <strong>Type 1 hypervisors run directly on system hardware.</strong></p>
+<hr>
+<p>A virtual machine is composed of?<br>  <strong>Operating system and application.</strong></p>
 ]]></content>
       
         <categories>
