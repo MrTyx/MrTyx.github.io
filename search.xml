@@ -143,9 +143,11 @@
     </entry>
     
     <entry>
-      <title><![CDATA[COSC1285 Algorithms Week 2 Quiz]]></title>
+      <title><![CDATA[COSC1285 Algorithms Week 3 Quiz]]></title>
       <url>/2017/08/03/COSC1285%20Algorithms/Quiz-3/</url>
-      <content type="html"><![CDATA[<p><img src="/images/cosc1285/graphSearch.jpg" alt=""></p>
+      <content type="html"><![CDATA[<p>Answers to the online Algorithms and Analysis quiz.</p>
+<a id="more"></a>
+<p><img src="/images/cosc1285/graphSearch.jpg" alt=""></p>
 <p>Starting at vertex 1, what is the sequence of vertices visited in a breadth-first-search traversal of the graph?  Where there are multiple vertices to next traverse, select the vertex with the smallest label to visit next.  The answers are the format of x,y,z, if the traversal visits x, then y, then z.</p>
 <p><strong>Answer: 1,2,6,4,5,3</strong></p>
 <p>Same question but depth-first-search traversal</p>
