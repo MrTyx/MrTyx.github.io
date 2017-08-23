@@ -151,6 +151,68 @@
     </entry>
     
     <entry>
+      <title><![CDATA[COSC1285 Algorithms Week 4 Quiz]]></title>
+      <url>/2017/08/10/COSC1285%20Algorithms/Quiz-4/</url>
+      <content type="html"><![CDATA[<p>Answers to the online Algorithms and Analysis quiz.</p>
+<a id="more"></a>
+<p>What is the worst case complexity for insertion sort, and in what scenario when is it achieved?  Assume we are sorting an array of size n. If there are two or more answers that could be possible, choose that is always guaranteed to result in the worst case.<br>  <strong>O(n^2)</strong></p>
+<p>Why can Shell Sort achieve O(n^1.5) worst case complexity?<br>  <strong>Shell sort uses an interleaving strategy that progressively bring the array to near sortedness, such that when insertion sort is applied, it runs in linear time.</strong></p>
+<p>Suppose you have the following sorted list [3, 5, 6, 8, 11, 12, 14, 15, 17, 18] and are using the recursive binary search algorithm. Which group of numbers correctly shows the sequence of comparisons used to find the key 8?  If the array/subarray has even length, there is two choices for the middle element.  In this case, choose the left one, i.e., a, b, c, d, then middle element is b.<br>  <strong>11, 5, 6, 8</strong></p>
+<p>Let us consider a digraph G(V, E) where V is the set of nodes and E is the set of edges. What is the complexity of Source Removal Algorithm in topological sorting for a digraph G(V,E) represented as a adjacency list?<br>  <strong>O( |V| + |E| )</strong></p>
+<p>Consider the following Binary Search Tree. If the node 10 is deleted, which of the following node will be the new the root?<br>  <img src="/images/cosc1285/bst.jpg" alt=""><br>  <strong>27</strong></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Uni Notes </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> COSC1285 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[INTE2401 Cloud Security Week 4 Quiz]]></title>
+      <url>/2017/08/10/INTE2401%20Cloud%20Security/Quiz-4/</url>
+      <content type="html"><![CDATA[<p>Answers to the multiple choice quiz given during the lecture.</p>
+<a id="more"></a>
+<p>Vigenere cipher is a <strong>polyalphabetic cipher</strong>.</p>
+<p>Which of the follow ciphers is the most secure? <strong>Vigenere cipher</strong>.</p>
+<p>The key size of a Vigenere cipher using 5-letter keyword is <strong>??</strong>.</p>
+<p>The German ADFGVX cipher is a <strong>product cipher</strong>.</p>
+<p>Based on ADFGVX cipher, 0 is substituted with <strong>??</strong>.</p>
+<p>In a cryptosystem, assume that the attacker is able to obtain the ciphertext of any plaintext. This security analysis is a <strong>??</strong>.</p>
+<p>ASCII code of X is <strong>1011000</strong>.</p>
+<p>In Data Encryption Standard (DES), <strong>the size of the plaintext is 64, and the size of the ciphertext is 64</strong>.</p>
+<p>In Simplified DES, the key size is <strong>10 bits</strong>.</p>
+<p>In the first substitution box S0 of Simplified DES, given the input 1010, the output is <strong>10</strong>.</p>
+<p>Decrypt Vigenere ciphertext “ehxldavuwgggm” with keyword “study”. <strong>modifications</strong>.</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Uni Notes </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> INTE2401 </tag>
+            
+            <tag> Cloud </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[COSC1285 Algorithms Week 4 Notes]]></title>
       <url>/2017/08/09/COSC1285%20Algorithms/Week-4/</url>
       <content type="html"><![CDATA[<p>A javascript implementation of InsertionSort.</p>
