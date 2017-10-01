@@ -3,6 +3,144 @@
   
     
     <entry>
+      <title><![CDATA[COSC1285 Algorithms Week 9 Quiz]]></title>
+      <url>/2017/10/01/COSC1285%20Algorithms/Quiz-9/</url>
+      <content type="html"><![CDATA[<p>Apply the Huffman coding algorithm for the alphabet and frequencies given below. What will be the length of the binary codeword for the letter ‘E’?  Note that frequency can be considered as a weight, or probability of occurance if we divide them by the total frequency (105 in this question).</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Letter</th>
+<th style="text-align:left">Frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">A</td>
+<td style="text-align:left">13</td>
+</tr>
+<tr>
+<td style="text-align:left">C</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">D</td>
+<td style="text-align:left">4</td>
+</tr>
+<tr>
+<td style="text-align:left">E</td>
+<td style="text-align:left">21</td>
+</tr>
+<tr>
+<td style="text-align:left">H</td>
+<td style="text-align:left">6</td>
+</tr>
+<tr>
+<td style="text-align:left">I</td>
+<td style="text-align:left">10</td>
+</tr>
+<tr>
+<td style="text-align:left">L</td>
+<td style="text-align:left">2</td>
+</tr>
+<tr>
+<td style="text-align:left">N</td>
+<td style="text-align:left">9</td>
+</tr>
+<tr>
+<td style="text-align:left">O</td>
+<td style="text-align:left">12</td>
+</tr>
+<tr>
+<td style="text-align:left">R</td>
+<td style="text-align:left">5</td>
+</tr>
+<tr>
+<td style="text-align:left">S</td>
+<td style="text-align:left">8</td>
+</tr>
+<tr>
+<td style="text-align:left">T</td>
+<td style="text-align:left">14</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Answer: 2</strong></p>
+<hr>
+<p>if graph G(V,E) is sparse, |E|, the number of edges, is the same order of magnitude as |V|, the number of vertices, what is the time complexity of Prim’s algorithm using a min-heap implementation?</p>
+<p><strong>Answer: O(|E| log(|V|))</strong></p>
+<hr>
+<p>Using this image;</p>
+<p><img src="/images/cosc1285/grid.png" alt=""></p>
+<p>Let us assume we are running Prim’s algorithm to find the Minimum Spanning Tree (MST) on the following graph. Write the vertices in the order that Prim adds them to the minimum spanning tree, starting at root vertex A.</p>
+<p><strong>Answer: A, J, G, E, C, D, F, H, B</strong></p>
+<p>Let us assume that we run Kruskal’s algorithm to find the minimum spanning tree on the following graph. What is the weight of the tree edge that Kruskal adds in the 3rd iteration (i.e, the 3rd edge in order) in the minimum spanning tree?</p>
+<p><strong>Answer: 4</strong></p>
+<p>Let us assume we run Dijkstra algorithm to find the shortest path tree on the following graph starting from vertex A. What is the last vertex added in algorithm (i.e., the shortest path from A to that vertex is determined at the last iteration in the algorithm) ?</p>
+<p><strong>Answer: B</strong></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Uni Notes </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> COSC1285 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[ISYS1126 Web Database Applications Week 8 Quiz]]></title>
+      <url>/2017/09/15/ISYS1126%20Web%20Database%20Apps/Quiz-8/</url>
+      <content type="html"><![CDATA[<h2 id="Code-samples"><a href="#Code-samples" class="headerlink" title="Code samples"></a>Code samples</h2><ul>
+<li>In the following code snippet: <code>const element = &lt;h1&gt;Hello, world!&lt;/h1&gt;;</code> the highlighted tag is known as <strong>JSX</strong></li>
+<li>In the following screenshot the “props” is being passed to <strong>base class constructor</strong>.<br><img src="/images/isys1126/test7_1.png" alt=""></li>
+<li>In React, the following class has a special name known as <strong>ES6</strong> class.<br><img src="/images/isys1126/test7_2.PNG" alt=""></li>
+</ul>
+<h2 id="React"><a href="#React" class="headerlink" title="React"></a>React</h2><ul>
+<li>React comes pre-built with Bootstrap capabilities. <strong>False</strong></li>
+<li>In React, event handlers are passed instances of <strong>Synthetic Event</strong>, a cross-browser wrapper around the browser’s native event. </li>
+<li>In React, components can be added to a list, which in turn can use JavaScript’s <strong>map</strong> function for iteration purposes.</li>
+<li>Will the following syntax work in React? <code>&lt;button onclick=&quot;function()&quot;&gt;Do something&lt;/button&gt;</code> <strong>No - onClick</strong></li>
+<li>The <strong>getInitialState</strong>  method is called before the component is mounted.</li>
+<li>In React, sharing state is accomplished by moving it down to the closest common ancestor of the components that need it. <strong>False</strong></li>
+<li>In React, after compilation, JSX expressions become regular <strong>JavaScript objects</strong>.</li>
+<li>An input form element whose value is controlled by React is called a <strong>controlled</strong> component.</li>
+<li>React library creates a lightweight tree from JavaScript objects (that mimics a document object model) known as <strong>Virtual DOM</strong>.</li>
+<li>React.js offers full MVC stack. <strong>False</strong></li>
+<li>In React, a component <strong>can be both ie. a class or a function</strong>.</li>
+<li>React native is <strong>for developing mobile apps</strong>.</li>
+<li>In order to assign a state in a class, one must use the expression <strong>this.state</strong>.</li>
+<li>In rare cases you might want a component to hide itself even though it was rendered by another component. To do this <strong>return null</strong>.</li>
+</ul>
+<h2 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h2><ul>
+<li><strong>Firebase</strong> can be used to implement facebook login in a React web application.</li>
+<li>APIs usually return data in <strong>XML and/or JSON</strong> format(s).</li>
+<li>An API designed in Laravel that returns JSON data can be consumed in a React web app using <strong>fetch</strong> and <strong>response.json</strong> functions.</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> Uni Notes </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> ISYS1126 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[ISYS1126 Web Database Applications Week 6 Quiz]]></title>
       <url>/2017/08/26/ISYS1126%20Web%20Database%20Apps/Quiz-6/</url>
       <content type="html"><![CDATA[<p>Answers to questions about Eloquent Queries, final topics on Laravel and introduction to Redis.</p>
