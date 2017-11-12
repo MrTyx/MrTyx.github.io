@@ -121,7 +121,7 @@
     </entry>
     
     <entry>
-      <title><![CDATA[ISYS1126 Web Database Applications Week 8 Quiz]]></title>
+      <title><![CDATA[ISYS1126 Web Database Applications Week 10 Quiz]]></title>
       <url>/2017/10/04/ISYS1126%20Web%20Database%20Apps/Quiz-10/</url>
       <content type="html"><![CDATA[<p>Answers to final questions on React</p>
 <a id="more"></a>
@@ -318,9 +318,11 @@
     <entry>
       <title><![CDATA[ISYS1126 Web Database Applications Week 8 Quiz]]></title>
       <url>/2017/09/15/ISYS1126%20Web%20Database%20Apps/Quiz-8/</url>
-      <content type="html"><![CDATA[<h2 id="Code-samples"><a href="#Code-samples" class="headerlink" title="Code samples"></a>Code samples</h2><ul>
+      <content type="html"><![CDATA[<p>Answers to the code sample questions, as well as React and Firebase.</p>
+<a id="more"></a>
+<h2 id="Code-samples"><a href="#Code-samples" class="headerlink" title="Code samples"></a>Code samples</h2><ul>
 <li>In the following code snippet: <code>const element = &lt;h1&gt;Hello, world!&lt;/h1&gt;;</code> the highlighted tag is known as <strong>JSX</strong></li>
-<li>In the following screenshot the “props” is being passed to <strong>base class constructor</strong>.<br><img src="/images/isys1126/test7_1.png" alt=""></li>
+<li>In the following screenshot the “props” is being passed to <strong>base class constructor</strong>.<br><img src="/images/isys1126/test7_1.PNG" alt=""></li>
 <li>In React, the following class has a special name known as <strong>ES6</strong> class.<br><img src="/images/isys1126/test7_2.PNG" alt=""></li>
 </ul>
 <h2 id="React"><a href="#React" class="headerlink" title="React"></a>React</h2><ul>
