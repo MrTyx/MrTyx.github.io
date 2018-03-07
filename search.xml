@@ -3,6 +3,42 @@
   
     
     <entry>
+      <title><![CDATA[COSC1182 Usability Engineering Lecture 2 Notes]]></title>
+      <url>/2018/03/07/COSC1182%20Usability%20Engineering/Lecture-2/</url>
+      <content type="html"><![CDATA[<h1 id="First-Principles"><a href="#First-Principles" class="headerlink" title="First Principles"></a>First Principles</h1><ul>
+<li>Qualitative: direct observation, direct questioning</li>
+<li>Quantitative: surveys, questionnaires</li>
+</ul>
+<h1 id="Second-Principles"><a href="#Second-Principles" class="headerlink" title="Second Principles"></a>Second Principles</h1><ul>
+<li>Analysing data (eg ABS data)</li>
+<li>Reviewing research (eg Nielsen Norman Group)</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> Uni Notes </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> COSC1182 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[My Post]]></title>
+      <url>/2017/12/12/My-Post/</url>
+      <content type="html"></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[eSports is like competitive piano playing]]></title>
       <url>/2017/11/12/eSports-is-like-competitive-piano-playing/</url>
       <content type="html"><![CDATA[<p>If you subdivide any complex task recursively, you get a list of motor inputs that have this “quark like” quality of indivisiblity. As you move back up the recursive stack, each set of child tasks has a parent task which has the responsibility of monitoring the error rates of each of children. These error rates account for both on the individual mandates of that machine and their effects on the larger whole. This formula is how you learn the piano, and in esports it is elevated to a new level of complexity when forced to factor in the natural selection of playstyles in a changing meta.</p>
